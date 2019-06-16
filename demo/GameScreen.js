@@ -141,39 +141,33 @@ playCard(cardNum){
     let card4;
     let card5;
     let playerH;
-    
     if(!gameOver(Fighter1, Fighter2)){
-   
+    //If game isn't over, pressing bubbles plays their action, else player is navigated to game over screen
       card1 =   <View style={styles.buttonHolder}>
                 <TouchableOpacity activeOpacity={0} onPress={this.playCard.bind(this, 0)}>
                 {img1}
                 </TouchableOpacity>
                 </View>
-
       card2 =   <View style={styles.buttonHolder}>
                 <TouchableOpacity activeOpacity={0} onPress={this.playCard.bind(this, 1)}>
                 {img2}
                 </TouchableOpacity>
                 </View>
-
       card3 =   <View style={styles.buttonHolder}>
                 <TouchableOpacity activeOpacity={0} onPress={this.playCard.bind(this, 2)}>
                 {img3}
                 </TouchableOpacity>
                 </View>
-
       card4 =   <View style={styles.buttonHolder}>
                 <TouchableOpacity activeOpacity={0} onPress={this.playCard.bind(this, 3)}>
                 {img4}
                 </TouchableOpacity>
                 </View>
-
       card5 =   <View style={styles.buttonHolder}>
                 <TouchableOpacity activeOpacity={0} onPress={this.playCard.bind(this, 4)}>
                 {img5}
                 </TouchableOpacity>
                 </View>
-
         if(Fighter1.health >= 100){
           playerH = <Text style={styles.phealth2}>{Fighter1.health}</Text>
         }else{
@@ -304,6 +298,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingBottom: -5,
+    zIndex: 4,
   },
     handBox2:{
     flex: 0.25,
@@ -314,6 +309,7 @@ export const styles = StyleSheet.create({
     paddingLeft: 10 / 423.5 * width,
     paddingRight: 20 / 423.5 * width,
     paddingTop: 0,
+    zIndex: 3,
   },
     handBox3:{
     flex: 0.25,
@@ -325,6 +321,7 @@ export const styles = StyleSheet.create({
     paddingRight: 75 / 423.5 * width,
     paddingTop: 0,
     paddingBottom: 0,
+    zIndex: 2,
   },
     buttonHolder:{
     width: 120 / 423.5 * width,
@@ -333,10 +330,11 @@ export const styles = StyleSheet.create({
     backgroundColor: backgroundColorGlobal,
     justifyContent: 'center',
     borderRadius: 120,
-    shadowOffset: { width: 5, height: 5 },
-    shadowOpacity: 0.8,
-    shadowRadius: 200,
-    elevation: 1,
+    shadowOffset: { width: 10, height: 1 },
+    shadowOpacity: 0.9,
+    shadowRadius: 30 / 423.5 * width,
+    shadowColor: 'black',
+    elevation: 10,
   },
   buttonText:{
     textAlign: 'center',
@@ -356,6 +354,7 @@ export const styles = StyleSheet.create({
   bottom:{
     flex: 0.05,
     backgroundColor: backgroundColorGlobal,
+    zIndex: 1,
   },
   top:{
     flex: 0.05,

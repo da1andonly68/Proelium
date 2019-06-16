@@ -1,6 +1,9 @@
 const STARTHEALTH = 50;
 const STARTSTANIMA = 30;
 const STARTMANA = 30;
+const STARTHEALTHHARD = 75;
+const STARTSTANIMAHARD = 45;
+const STARTMANAHARD = 45;
 const DECKSIZE = 5;
 const PUCNHDAMAGE = 5;
 const PUNCHDRAIN = 2;
@@ -17,6 +20,7 @@ const HIGHESTMANADRAIN = FIREBALLDRAIN;
 export var winner = "NONE";
 var screenMessage = "";
 export var reset = false;
+var difficultySetting = "Normal";
 
 function Fighter(name){
     this.name = name
@@ -235,7 +239,13 @@ export function gameOver(f1, f2){
 }
 
 export function bot(){
-  smartBot();
+
+  if(!(difficultySetting === "Easy")){
+    smartBot();
+  }else{
+     useCard(Fighter2, randomNum(0, DECKSIZE - 1));
+  }
+
   if(!gameOver(Fighter1, Fighter2)){
   Fighter2.screenMessage = "Opponent has cast " + Fighter2.curCard;
   }
@@ -335,17 +345,26 @@ function smartBot(){
         cardUsed = true;
     }
 }
+export function setDifficulty(difficulty){
+  difficultySetting = difficulty;
+}
 
 export function resetGame(){
+  if(!(difficultySetting === "Hard")){
+  Fighter2.health = STARTHEALTH;
+  Fighter2.stanima = STARTSTANIMA;
+  Fighter2.mana = STARTMANA;
+  }else{
+  Fighter2.health = STARTHEALTHHARD;
+  Fighter2.stanima = STARTSTANIMAHARD;
+  Fighter2.mana = STARTMANAHARD;
+  }
   Fighter1.health = STARTHEALTH;
   Fighter1.stanima = STARTSTANIMA;
   Fighter1.mana = STARTMANA;
   Fighter1.scalar = 1;
-  generateCards(Fighter1, 5);
-  Fighter2.health = STARTHEALTH;
-  Fighter2.stanima = STARTSTANIMA;
-  Fighter2.mana = STARTMANA;
   Fighter2.scalar = 1;
+  generateCards(Fighter1, 5);
   generateCards(Fighter2, 5);
   winner = null;
   Fighter2.screenMessage = "";
