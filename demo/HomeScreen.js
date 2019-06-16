@@ -38,8 +38,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: backgroundColorGlobal,
     justifyContent: 'center',
-    // paddingTop: Constants.statusBarHeight,
-    // padding: 1,
     alignItems: 'center',
   },
     buttonHolder:{

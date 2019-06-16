@@ -141,33 +141,39 @@ playCard(cardNum){
     let card4;
     let card5;
     let playerH;
+    
     if(!gameOver(Fighter1, Fighter2)){
-    //If game isn't over, pressing bubbles plays their action, else player is navigated to game over screen
+   
       card1 =   <View style={styles.buttonHolder}>
                 <TouchableOpacity activeOpacity={0} onPress={this.playCard.bind(this, 0)}>
                 {img1}
                 </TouchableOpacity>
                 </View>
+
       card2 =   <View style={styles.buttonHolder}>
                 <TouchableOpacity activeOpacity={0} onPress={this.playCard.bind(this, 1)}>
                 {img2}
                 </TouchableOpacity>
                 </View>
+
       card3 =   <View style={styles.buttonHolder}>
                 <TouchableOpacity activeOpacity={0} onPress={this.playCard.bind(this, 2)}>
                 {img3}
                 </TouchableOpacity>
                 </View>
+
       card4 =   <View style={styles.buttonHolder}>
                 <TouchableOpacity activeOpacity={0} onPress={this.playCard.bind(this, 3)}>
                 {img4}
                 </TouchableOpacity>
                 </View>
+
       card5 =   <View style={styles.buttonHolder}>
                 <TouchableOpacity activeOpacity={0} onPress={this.playCard.bind(this, 4)}>
                 {img5}
                 </TouchableOpacity>
                 </View>
+
         if(Fighter1.health >= 100){
           playerH = <Text style={styles.phealth2}>{Fighter1.health}</Text>
         }else{
