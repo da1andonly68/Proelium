@@ -6,13 +6,16 @@ import HomeScreen from './HomeScreen';
 import GameScreen from './GameScreen';
 import GameOverScreen from './GameOverScreen';
 import CardCatalogScreen from './CardCatalogScreen';
+import InstructionsScreen from './InstructionsScreen';
+import MatchHistoryScreen from './MatchHistoryScreen';
 
 const MainNavigator = createStackNavigator({
   Home: {screen: HomeScreen},
   Game: {screen: GameScreen},
   Gameover: {screen: GameOverScreen},
   Catalog: {screen: CardCatalogScreen},
-
+  Instructions: {screen: InstructionsScreen},
+  History: {screen: MatchHistoryScreen},
 },
 {
   headerMode: 'none',

@@ -1,12 +1,11 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, Image, Dimensions, Navigator, Button, TouchableOpacity } from 'react-native';
-import Constants from 'expo-constants';
 import App from './App';
-import { Fighter1, Fighter2, damage, useCard, burnCard, bot, screenMessage, gameOver }from './gamecode/Run';
+import { Fighter1, Fighter2, GameConsts, damage, useCard, burnCard, bot, screenMessage, gameOver }from './gamecode/Run';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
-const backgroundColorGlobal= 'white';
+var backgroundColorGlobal = 'white';
 var moves = 0;
 
 export default class GameScreen extends React.Component {
@@ -29,8 +28,6 @@ burnCard(cardNum){
   }
   this.setState({dummy: 1});
 }
-
-
 
   render() {
     
@@ -214,7 +211,6 @@ burnCard(cardNum){
 
     
     return (
-
   <View style={styles.container}>
         <View style={styles.top}>        
         </View>
@@ -265,17 +261,15 @@ burnCard(cardNum){
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: Constants.statusBarHeight,
+    paddingTop: GameConsts.statusBarHeight,
     backgroundColor: backgroundColorGlobal,
   },
   statBox:{
     flex: 0.00045 * height,
     justifyContent: 'center',
-    backgroundColor: backgroundColorGlobal,
     alignItems: 'center',
   },
   messageBox:{
-    backgroundColor: backgroundColorGlobal,
     flex: 0.08,
     alignItems: 'center',
     padding: 2,
@@ -323,7 +317,6 @@ export const styles = StyleSheet.create({
   },
   handBox1:{
     flex: 0.23,
-    backgroundColor: backgroundColorGlobal,
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingBottom: -5,
@@ -331,7 +324,6 @@ export const styles = StyleSheet.create({
   },
     handBox2:{
     flex: 0.25,
-    backgroundColor: backgroundColorGlobal,
     alignItems: 'center',
     justifyContent: 'space-between',
     flexDirection: 'row',
@@ -342,7 +334,6 @@ export const styles = StyleSheet.create({
   },
     handBox3:{
     flex: 0.25,
-    backgroundColor: backgroundColorGlobal,
     alignItems: 'center',
     justifyContent: 'space-between',
     flexDirection: 'row',
@@ -353,17 +344,16 @@ export const styles = StyleSheet.create({
     zIndex: 2,
   },
     buttonHolder:{
-    width: 120 / 423.5 * width,
-    height: 120 / 701.8 * height,
+    width: 128 / 423.5 * width,
+    height: 128 / 701.8 * height,
     fontSize: 36,
-    backgroundColor: backgroundColorGlobal,
     justifyContent: 'center',
-    borderRadius: 120,
-    shadowOffset: { width: 10, height: 1 },
+    borderRadius: 128,
+    shadowOffset: { width: 1, height: 1 },
     shadowOpacity: 0.9,
     shadowRadius: 30 / 423.5 * width,
     shadowColor: 'black',
-    elevation: 10,
+    elevation: 1,
   },
   buttonText:{
     textAlign: 'center',
@@ -374,7 +364,6 @@ export const styles = StyleSheet.create({
   playerEnergy:{
     flexDirection: 'row',
     flex: 0.30,
-    backgroundColor: backgroundColorGlobal,
     justifyContent: 'space-between',
     paddingLeft: 10,
     paddingRight: 10,
@@ -382,21 +371,17 @@ export const styles = StyleSheet.create({
   },
   bottom:{
     flex: 0.05,
-    backgroundColor: backgroundColorGlobal,
     zIndex: 1,
   },
   top:{
     flex: 0.05,
-    backgroundColor: backgroundColorGlobal,
   },
   playerStat:{
-    backgroundColor: backgroundColorGlobal,
     width: 100,
     height: 120,
     justifyContent: 'space-between',
   },
   playerHealth:{
-    backgroundColor: backgroundColorGlobal,
     flex: 0.5,
     justifyContent: 'center',
     paddingTop: 10,

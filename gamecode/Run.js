@@ -4,9 +4,9 @@ const STARTMANA = 30;
 const STARTHEALTHHARD = 75;
 const STARTSTANIMAHARD = 45;
 const STARTMANAHARD = 45;
-const STARTHEALTHNIGHTMARE = 25;
-const STARTSTANIMANIGHTMARE = 15;
-const STARTMANAHARDNIGHTMARE = 15;
+const STARTHEALTHNIGHTMARE = 40;
+const STARTSTANIMANIGHTMARE = 20;
+const STARTMANAHARDNIGHTMARE = 20;
 const DECKSIZE = 5;
 const PUCNHDAMAGE = 5;
 const PUNCHDRAIN = 2;
@@ -184,7 +184,7 @@ export function useCard(Fighter, placeInDeck){
     }
     function freeze(){
         if(enough(mana, FREEZEDRAIN)){
-          if(opp.stanima >= FREEZEDAMAGE * opp.scalar){
+          if(opp.stanima >= FREEZEDAMAGE * scal){
             stanimaUse(opp, FREEZEDAMAGE * scal);
           }else{
             stanimaUse(opp, opp.stanima);
@@ -192,8 +192,12 @@ export function useCard(Fighter, placeInDeck){
            manaUse(caster, FREEZEDRAIN);
         }else{
           if(mana > 0){
+          if(opp.stanima >= FREEZEDAMAGE * scal * partial(mana, FREEZEDRAIN) ){
             damage(opp, FREEZEDAMAGE * scal * partial(mana, FREEZEDRAIN));
-            manaUse(caster, FREEZEDRAIN * partial(mana, FREEZEDRAIN));
+            manaUse(caster, FREEZEDRAIN * scal * partial(mana, FREEZEDRAIN));
+          }else{
+            stanimaUse(opp, opp.stanima);
+          }
           }else{
             manaUse(caster, -FREEZEDRAIN * scal);
           }
@@ -201,8 +205,8 @@ export function useCard(Fighter, placeInDeck){
     }
     function leech(){
       if(enough(mana, LEECHDRAIN)){
-        damage(opp, LEECHTRANSFER);
-        damage(caster, -LEECHTRANSFER);
+        damage(opp, LEECHTRANSFER * scal);
+        damage(caster, -LEECHTRANSFER * scal);
         manaUse(caster, LEECHDRAIN);
       }else{
         if(mana > 0){
@@ -217,7 +221,7 @@ export function useCard(Fighter, placeInDeck){
 
     function poison(){
       if(enough(mana, POISONDRAIN)){
-        damage(opp, POISONDAMAGE);
+        damage(opp, POISONDAMAGE * scal);
         manaUse(caster, POISONDRAIN);
         opp.scalar = POISONSCALER * scal * opp.scalar;
         opp.emult = true;
@@ -533,6 +537,10 @@ export function setDifficulty(difficulty){
   difficultySetting = difficulty;
 }
 
+export function getDifficulty(){
+  return difficultySetting;
+}
+
 export function resetGame(){
   if(!((difficultySetting === "Hard") || (difficultySetting === "Nightmare"))){
   Fighter2.health = STARTHEALTH;
@@ -568,4 +576,4 @@ Fighter2.enemey(Fighter1);
 generateCards(Fighter1, 5);
 generateCards(Fighter2, 5);
 
-export var Constants = new GameConstants();
+export var GameConsts = new GameConstants();

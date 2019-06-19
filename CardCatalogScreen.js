@@ -2,13 +2,13 @@ import React from 'react';
 import { StyleSheet, Text, View, Navigator, Dimensions, Button, TouchableOpacity, Image, ScrollView
 } from 'react-native';
 import CodePush from 'react-native-code-push';
-import { Constants } from './gamecode/Run';
+import { GameConsts } from './gamecode/Run';
 
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 const backgroundColorGlobal= 'white';
-const darkGrey = '#989898';
+const darkGrey = '#666666';
 const infoBoxColor = darkGrey;
 const limeGreen = '#32CD32';
 
@@ -38,10 +38,10 @@ export default class CardCatalogScreen extends React.Component{
                   <Text style={styles.cardName}>PUNCH</Text>
                 </View>
                 <View style={styles.descriptionBox}>
-                  <Text style={styles.description}>Deals {Constants.punchDamage} damage to opponent</Text>
+                  <Text style={styles.description}>Deals {GameConsts.punchDamage} damage to opponent</Text>
                 </View>
                 <View style={styles.drainBox}>
-                  <Text style={styles.drainStam}>DRAIN: {Constants.punchDrain} stanima </Text>
+                  <Text style={styles.drainStam}>DRAIN: {GameConsts.punchDrain} stanima </Text>
                 </View>
               </View>
           </View>
@@ -55,10 +55,10 @@ export default class CardCatalogScreen extends React.Component{
                   <Text style={styles.cardName}>KICK</Text>
                 </View>
                 <View style={styles.descriptionBox}>
-                  <Text style={styles.description}>Deals {Constants.kickDamage} damage to opponent</Text>
+                  <Text style={styles.description}>Deals {GameConsts.kickDamage} damage to opponent</Text>
                 </View>
                 <View style={styles.drainBox}>
-                  <Text style={styles.drainStam}>DRAIN: {Constants.kickDrain} stanima </Text>
+                  <Text style={styles.drainStam}>DRAIN: {GameConsts.kickDrain} stanima </Text>
                 </View>
               </View>
           </View>
@@ -71,10 +71,10 @@ export default class CardCatalogScreen extends React.Component{
                   <Text style={styles.cardName}>POISON</Text>
                 </View>
                 <View style={styles.descriptionBox}>
-                  <Text style={styles.descriptionPoison}>Scales opponents next action by {Constants.poisonScaler} and deals                                    {Constants.poisonDamage} damage</Text>
+                  <Text style={styles.descriptionPoison}>Scales opponents next action by {GameConsts.poisonScaler} and deals                                    {GameConsts.poisonDamage} damage</Text>
                 </View>
                 <View style={styles.drainBox}>
-                  <Text style={styles.drainMana}>DRAIN: {Constants.poisonDrain} mana </Text>
+                  <Text style={styles.drainMana}>DRAIN: {GameConsts.poisonDrain} mana </Text>
                 </View>
               </View>
         </View>
@@ -87,10 +87,10 @@ export default class CardCatalogScreen extends React.Component{
                   <Text style={styles.cardName}>LEECH</Text>
                 </View>
                 <View style={styles.descriptionBox}>
-                  <Text style={styles.description}>Steals {Constants.leechTransfer} health from opponent</Text>
+                  <Text style={styles.description}>Steals {GameConsts.leechTransfer} health from opponent</Text>
                 </View>
                 <View style={styles.drainBox}>
-                  <Text style={styles.drainMana}>DRAIN: {Constants.leechDrain} mana </Text>
+                  <Text style={styles.drainMana}>DRAIN: {GameConsts.leechDrain} mana </Text>
                 </View>
               </View>
           </View>  
@@ -104,10 +104,10 @@ export default class CardCatalogScreen extends React.Component{
                   <Text style={styles.cardName}>HEAL</Text>
                 </View>
                 <View style={styles.descriptionBox}>
-                  <Text style={styles.description}>Restores {-Constants.healthBoost} health points</Text>
+                  <Text style={styles.description}>Restores {-GameConsts.healthBoost} health points</Text>
                 </View>
                 <View style={styles.drainBox}>
-                  <Text style={styles.drainMana}>DRAIN: {Constants.healDrain} mana </Text>
+                  <Text style={styles.drainMana}>DRAIN: {GameConsts.healDrain} mana </Text>
                 </View>
             </View>
         </View>
@@ -121,10 +121,10 @@ export default class CardCatalogScreen extends React.Component{
                   <Text style={styles.cardName}>FIREBALL</Text>
                 </View>
                 <View style={styles.descriptionBox}>
-                  <Text style={styles.description}>Deals {Constants.fireballDamage} damage to opponent</Text>
+                  <Text style={styles.description}>Deals {GameConsts.fireballDamage} damage to opponent</Text>
                 </View>
                 <View style={styles.drainBox}>
-                  <Text style={styles.drainMana}>DRAIN: {Constants.fireballDrain} mana </Text>
+                  <Text style={styles.drainMana}>DRAIN: {GameConsts.fireballDrain} mana </Text>
                 </View>
               </View>
         </View>
@@ -138,10 +138,10 @@ export default class CardCatalogScreen extends React.Component{
                   <Text style={styles.cardName}>FREEZE</Text>
                 </View>
                 <View style={styles.descriptionBox}>
-                  <Text style={styles.description}>Reduces opponents stamina by {Constants.freezeDamage}</Text>
+                  <Text style={styles.description}>Reduces opponents stamina by {GameConsts.freezeDamage}</Text>
                 </View>
                 <View style={styles.drainBox}>
-                  <Text style={styles.drainMana}>DRAIN: {Constants.freezeDrain} mana </Text>
+                  <Text style={styles.drainMana}>DRAIN: {GameConsts.freezeDrain} mana </Text>
                 </View>
               </View>
         </View>
@@ -155,7 +155,7 @@ export default class CardCatalogScreen extends React.Component{
                   <Text style={styles.cardName}>REST</Text>
                 </View>
                 <View style={styles.descriptionBox}>
-                  <Text style={styles.description}>Restores {Constants.restBoost} mana and stamina</Text>
+                  <Text style={styles.description}>Restores {GameConsts.restBoost} mana and stamina</Text>
                 </View>
                 <View style={styles.drainBox}>
                   <Text style={styles.drain}>DRAIN: none </Text>
@@ -172,7 +172,7 @@ export default class CardCatalogScreen extends React.Component{
                   <Text style={styles.cardName}>MULTIPLIER</Text>
                 </View>
                 <View style={styles.descriptionBox}>
-                  <Text style={styles.description}>Scales the next turns action by {Constants.multiplierScaler}</Text>
+                  <Text style={styles.description}>Scales the next turns action by {GameConsts.multiplierScaler}</Text>
                 </View>
                 <View style={styles.drainBox}>
                   <Text style={styles.drain}>DRAIN: none </Text>

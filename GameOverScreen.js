@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Navigator, Dimensions, Button, TouchableOpacity
 } from 'react-native';
 import Constants from 'expo-constants';
 import CodePush from 'react-native-code-push';
-import { winner, Fighter1, resetGame } from './gamecode/Run';
+import { winner, Fighter1, resetGame, getDifficulty } from './gamecode/Run';
 
 
 const width = Dimensions.get('window').width;
@@ -25,7 +25,17 @@ export default class GameOverScreen extends React.Component{
      let img;
      
      if(winner === Fighter1.name){
-       img = <Image style={styles.logo} source={require('./assets/trophy.png')} />
+      if(getDifficulty() === "Easy"){
+        img = <Image style={styles.logo} source={require('./assets/bronze.png')} />
+      }else if(getDifficulty() === "Normal"){
+        img = <Image style={styles.logo} source={require('./assets/silver.png')} />
+      }else if(getDifficulty() === "Hard"){
+        img = <Image style={styles.logo} source={require('./assets/gold.png')} />
+      }else if(getDifficulty() === "Nightmare"){
+        img = <Image style={styles.logo} source={require('./assets/trophy.png')} />
+      }else{
+        img =  <Image style={styles.logo} source={require('./assets/skull.png')} />
+      }
      }else{
        img =  <Image style={styles.logo} source={require('./assets/skull.png')} />
      }
