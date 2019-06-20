@@ -199,18 +199,18 @@ const styles = StyleSheet.create({
     backgroundColor: backgroundColorGlobal,
   },
   menuBubble:{
-    width: 70,
-    height: 70,
-    borderRadius: 70,
+    width: 70 / 423.5 * width,
+    height: 70 / 701.8 * height,
+    borderRadius: (70 / 2) / 423.5 * width / 701.8 * height,
     backgroundColor: backgroundColorGlobal,
     zIndex: 6,
   },
   bubbleIcon: {
     height: (70 / 423.5) * width,
     width: (70 / 423.5) * width,
-    borderRadius: 70,
+    borderRadius: (70 / 2) / 423.5 * width / 701.8 * height,
   },
   bubbleSpacing:{
-    width: 20,
+    width: 20 / 423.5 * width,
   }
 });

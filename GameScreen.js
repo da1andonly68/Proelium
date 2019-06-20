@@ -293,6 +293,7 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 95 / 701.8 * height,
     fontWeight: 'bold',
+    zIndex: 7,
   },
     phealth2:{
     fontFamily: 'Verdana',
@@ -300,6 +301,7 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 60 / 701.8 * height,
     fontWeight: 'bold',
+    zIndex: 7,
   },
   stanima:{
     color: 'green',
@@ -348,10 +350,10 @@ export const styles = StyleSheet.create({
     height: 128 / 701.8 * height,
     fontSize: 36,
     justifyContent: 'center',
-    borderRadius: 128,
+    borderRadius: ((128 / 2) / 423.5 * width) / 701.8 * height,
     shadowOffset: { width: 1, height: 1 },
     shadowOpacity: 0.9,
-    shadowRadius: 30 / 423.5 * width,
+    shadowRadius: 1 / 423.5 * width,
     shadowColor: 'black',
     elevation: 1,
   },
@@ -363,11 +365,12 @@ export const styles = StyleSheet.create({
   },
   playerEnergy:{
     flexDirection: 'row',
-    flex: 0.30,
+    flex: 0.20,
     justifyContent: 'space-between',
     paddingLeft: 10,
     paddingRight: 10,
     alignItems:'center',
+    zIndex: 1,
   },
   bottom:{
     flex: 0.05,
@@ -382,14 +385,15 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   playerHealth:{
-    flex: 0.5,
+    flex: 0.8,
     justifyContent: 'center',
     paddingTop: 10,
+    zIndex: 6,
   },
     logo: {
     height: 128  / 423.5 * width,
     width: 128 / 701.8 * height,
-    borderRadius: 120,
+    borderRadius: ((128 / 2) / 423.5 * width) / 701.8 * height,
   },
 
 });

@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     fontSize: 36,
     backgroundColor: backgroundColorGlobal,
     justifyContent: 'center',
-    borderRadius: 400,
+    borderRadius: (350 / 2) / 423.5 * width / 701.8 * height,
     shadowOffset: { width: 10, height: 1 },
     shadowOpacity: 0.9,
     shadowRadius: 30,
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     logo: {
     height: 350 / 423.5 * width,
     width: 350 / 423.5 * width,
-    borderRadius: 350,
+    borderRadius: (350 / 2) / 423.5 * width / 701.8 * height,
   },
 
 });

@@ -24,7 +24,7 @@ export default class MatchHistoryScreen extends React.Component{
         <View style={styles.top}></View>
 
         <View style={styles.screenTitleBox}>
-          <Text style={styles.screenTitle}>Instructions</Text>
+          <Text style={styles.screenTitle}>Match History</Text>
         </View>
 
         <View style={styles.spacing}></View>
