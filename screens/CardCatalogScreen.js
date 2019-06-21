@@ -1,8 +1,17 @@
 import React from 'react';
-import { StyleSheet, Text, View, Navigator, Dimensions, Button, TouchableOpacity, Image, ScrollView
+import { 
+  StyleSheet, 
+  Text, 
+  View, 
+  Navigator, 
+  Dimensions, 
+  Button, 
+  TouchableOpacity, 
+  Image, 
+  ScrollView
 } from 'react-native';
 import CodePush from 'react-native-code-push';
-import { GameConsts } from './gamecode/Run';
+import { GameConsts } from '../gamecode/Run';
 
 
 const width = Dimensions.get('window').width;
@@ -32,7 +41,7 @@ export default class CardCatalogScreen extends React.Component{
         <View style={styles.spacing}></View>
 
           <View style={styles.contentBox}>
-            <View style={styles.imgBox}><Image style={styles.imgBox} source={require('./assets/fist.png')} /></View>
+            <View style={styles.imgBox}><Image style={styles.imgBox} source={require('../assets/fist.png')} /></View>
               <View style={styles.infoBox}>
                 <View style={styles.cardNameBox}>
                   <Text style={styles.cardName}>PUNCH</Text>
@@ -49,7 +58,7 @@ export default class CardCatalogScreen extends React.Component{
         <View style={styles.spacing}></View>  
 
         <View style={styles.contentBox}>
-            <View style={styles.imgBox}><Image style={styles.imgBox} source={require('./assets/boot.png')} /></View>
+            <View style={styles.imgBox}><Image style={styles.imgBox} source={require('../assets/boot.png')} /></View>
               <View style={styles.infoBox}>
                 <View style={styles.cardNameBox}>
                   <Text style={styles.cardName}>KICK</Text>
@@ -65,7 +74,7 @@ export default class CardCatalogScreen extends React.Component{
         <View style={styles.spacing}></View>   
 
         <View style={styles.contentBox}>
-            <View style={styles.imgBox}><Image style={styles.imgBox} source={require('./assets/poison.png')} /></View>
+            <View style={styles.imgBox}><Image style={styles.imgBox} source={require('../assets/poison.png')} /></View>
               <View style={styles.infoBox}>
                 <View style={styles.cardNameBox}>
                   <Text style={styles.cardName}>POISON</Text>
@@ -81,7 +90,7 @@ export default class CardCatalogScreen extends React.Component{
           <View style={styles.spacing}></View>
 
           <View style={styles.contentBox}>
-            <View style={styles.imgBox}><Image style={styles.imgBox} source={require('./assets/bat.png')} /></View>
+            <View style={styles.imgBox}><Image style={styles.imgBox} source={require('../assets/bat.png')} /></View>
               <View style={styles.infoBox}>
                 <View style={styles.cardNameBox}>
                   <Text style={styles.cardName}>LEECH</Text>
@@ -98,7 +107,7 @@ export default class CardCatalogScreen extends React.Component{
         <View style={styles.spacing}></View>   
 
         <View style={styles.contentBox}>
-          <View style={styles.imgBox}><Image style={styles.imgBox} source={require('./assets/heal.png')} /></View>
+          <View style={styles.imgBox}><Image style={styles.imgBox} source={require('../assets/heal.png')} /></View>
             <View style={styles.infoBox}>
                 <View style={styles.cardNameBox}>
                   <Text style={styles.cardName}>HEAL</Text>
@@ -115,7 +124,7 @@ export default class CardCatalogScreen extends React.Component{
         <View style={styles.spacing}></View>        
 
         <View style={styles.contentBox}>
-            <View style={styles.imgBox}><Image style={styles.imgBox} source={require('./assets/fireball.png')} /></View>
+            <View style={styles.imgBox}><Image style={styles.imgBox} source={require('../assets/fireball.png')} /></View>
               <View style={styles.infoBox}>
                 <View style={styles.cardNameBox}>
                   <Text style={styles.cardName}>FIREBALL</Text>
@@ -132,7 +141,7 @@ export default class CardCatalogScreen extends React.Component{
         <View style={styles.spacing}></View>  
 
         <View style={styles.contentBox}>
-            <View style={styles.imgBox}><Image style={styles.imgBox} source={require('./assets/freeze.png')} /></View>
+            <View style={styles.imgBox}><Image style={styles.imgBox} source={require('../assets/freeze.png')} /></View>
               <View style={styles.infoBox}>
                 <View style={styles.cardNameBox}>
                   <Text style={styles.cardName}>FREEZE</Text>
@@ -149,7 +158,7 @@ export default class CardCatalogScreen extends React.Component{
         <View style={styles.spacing}></View>        
 
         <View style={styles.contentBox}>
-            <View style={styles.imgBox}><Image style={styles.imgBox} source={require('./assets/rest.png')} /></View>
+            <View style={styles.imgBox}><Image style={styles.imgBox} source={require('../assets/rest.png')} /></View>
               <View style={styles.infoBox}>
                 <View style={styles.cardNameBox}>
                   <Text style={styles.cardName}>REST</Text>
@@ -166,7 +175,7 @@ export default class CardCatalogScreen extends React.Component{
         <View style={styles.spacing}></View>   
 
         <View style={styles.contentBox}>
-            <View style={styles.imgBox}><Image style={styles.imgBox} source={require('./assets/multiplier.png')} /></View>
+            <View style={styles.imgBox}><Image style={styles.imgBox} source={require('../assets/multiplier.png')} /></View>
               <View style={styles.infoBox}>
                 <View style={styles.cardNameBox}>
                   <Text style={styles.cardName}>MULTIPLIER</Text>

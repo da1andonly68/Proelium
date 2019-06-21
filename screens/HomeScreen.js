@@ -10,7 +10,7 @@ import {
   Image,
 } from 'react-native';
 import Constants from 'expo-constants';
-import { randomNum, bot, setDifficulty, resetGame } from './gamecode/Run';
+import { randomNum, bot, setDifficulty, resetGame } from '../gamecode/Run';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -56,27 +56,27 @@ export default class HomeScreen extends React.Component {
     let logo;
     if(difficulty === "Easy"){
       easy = <Button title="Easy" color="green" style={styles.difficultyButton}/>;
-      logo = <Image style={styles.logo} source={require('./assets/handfire-small.png')}/>
+      logo = <Image style={styles.logo} source={require('../assets/handfire-small.png')}/>
     }else{
       easy = <Button title="Easy" color={unSelectedColor} style={styles.difficultyButton} onPress={this.getDifficulty.bind(this, "Easy")}/>
     }
 
     if(difficulty === "Normal"){
       normal = <Button title="Normal" color="orange" style={styles.difficultyButton} />
-      logo = <Image style={styles.logo} source={require('./assets/handfire-med.png')}/>
+      logo = <Image style={styles.logo} source={require('../assets/handfire-med.png')}/>
     }else{
       normal = <Button title="Normal" color={unSelectedColor} style={styles.difficultyButton} onPress={this.getDifficulty.bind(this, "Normal")}/>
     }
         
     if(difficulty === "Hard"){
       hard = <Button title="Hard" color="red" style={styles.difficultyButton} />
-      logo = <Image style={styles.logo} source={require('./assets/handfire-large.png')}/>
+      logo = <Image style={styles.logo} source={require('../assets/handfire-large.png')}/>
     }else{
       hard = <Button title="Hard" color={unSelectedColor} style={styles.difficultyButton} onPress={this.getDifficulty.bind(this, "Hard")}/>
     }
     if(difficulty === "Nightmare"){
       nightmare = <Button title="Nightmare" color="black" style={styles.difficultyButton} />
-      logo = <Image style={styles.logo} source={require('./assets/nuke.png')}/>
+      logo = <Image style={styles.logo} source={require('../assets/nuke.png')}/>
     }else{
       nightmare = <Button title="Nightmare" color={unSelectedColor} style={styles.difficultyButton} onPress={this.getDifficulty.bind(this, "Nightmare")}/>
     }
@@ -84,7 +84,7 @@ export default class HomeScreen extends React.Component {
       <View style={styles.page}>
 
       <View style={styles.top}>
-      <Image style={styles.titleLogo} source={require('./assets/title.png')}/>
+      <Image style={styles.titleLogo} source={require('../assets/title.png')}/>
       </View>
 
 
@@ -110,7 +110,7 @@ export default class HomeScreen extends React.Component {
         <View style={styles.menuBox}>
           <View style={styles.menuBubble}>
           <TouchableOpacity activeOpacity={0} onPress={() => navigate('Catalog')}>
-          <Image style={styles.bubbleIcon} source={require('./assets/deck.png')} />
+          <Image style={styles.bubbleIcon} source={require('../assets/deck.png')} />
           </TouchableOpacity>
           </View>
 
@@ -118,7 +118,7 @@ export default class HomeScreen extends React.Component {
 
           <View style={styles.menuBubble}>
           <TouchableOpacity activeOpacity={0} onPress={() => navigate('Instructions')}>
-          <Image style={styles.bubbleIcon} source={require('./assets/help.png')} />
+          <Image style={styles.bubbleIcon} source={require('../assets/help.png')} />
           </TouchableOpacity>
           </View>
 
@@ -126,9 +126,10 @@ export default class HomeScreen extends React.Component {
 
           <View style={styles.menuBubble}>
           <TouchableOpacity activeOpacity={0} onPress={() => navigate('History')}>
-          <Image style={styles.bubbleIcon} source={require('./assets/collection.png')}/>
+          <Image style={styles.bubbleIcon} source={require('../assets/collection.png')}/>
           </TouchableOpacity>
           </View>
+          
         </View>
 
       </View>

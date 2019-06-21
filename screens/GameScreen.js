@@ -1,7 +1,16 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, Image, Dimensions, Navigator, Button, TouchableOpacity } from 'react-native';
-import App from './App';
-import { Fighter1, Fighter2, GameConsts, damage, useCard, burnCard, bot, screenMessage, gameOver }from './gamecode/Run';
+import { 
+  Text, 
+  View, 
+  StyleSheet, 
+  Image, 
+  Dimensions, 
+  Navigator, 
+  Button, 
+  TouchableOpacity 
+  } from 'react-native';
+import App from '../App';
+import { Fighter1, Fighter2, GameConsts, damage, useCard, burnCard, bot, screenMessage, gameOver }from '../gamecode/Run';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -46,115 +55,115 @@ burnCard(cardNum){
     let p4 = Fighter1.deck[4];
 
       if((p0 === 0) || (p0 === 1) || (p0 === 2) || (p0 === 3) || (p0 === 4)){  
-          img1 = <Image style={styles.logo} source={require('./assets/fist.png')} />
+          img1 = <Image style={styles.logo} source={require('../assets/fist.png')} />
           }else if((p0 === 5) || (p0 === 6) || (p0 === 7) || (p0 === 8)){
-          img1 = <Image style={styles.logo} source={require('./assets/boot.png')} />
+          img1 = <Image style={styles.logo} source={require('../assets/boot.png')} />
           }else if(p0 === 9){
-           img1 = <Image style={styles.logo} source={require('./assets/fireball.png')} />
+           img1 = <Image style={styles.logo} source={require('../assets/fireball.png')} />
           }else if(p0 === 10){
-           img1 = <Image style={styles.logo} source={require('./assets/heal.png')} />
+           img1 = <Image style={styles.logo} source={require('../assets/heal.png')} />
           }else if(p0 === 11){
-           img1 = <Image style={styles.logo} source={require('./assets/rest.png')} />
+           img1 = <Image style={styles.logo} source={require('../assets/rest.png')} />
           }else if(p0 === 12){
-           img1 = <Image style={styles.logo} source={require('./assets/multiplier.png')} />
+           img1 = <Image style={styles.logo} source={require('../assets/multiplier.png')} />
           }else if(p0 === 13){
-           img1 = <Image style={styles.logo} source={require('./assets/poison.png')} />
+           img1 = <Image style={styles.logo} source={require('../assets/poison.png')} />
           }else if(p0 === 14){
-           img1 = <Image style={styles.logo} source={require('./assets/freeze.png')} />
+           img1 = <Image style={styles.logo} source={require('../assets/freeze.png')} />
           }else if(p0 === 15){
-           img1 = <Image style={styles.logo} source={require('./assets/bat.png')} />
+           img1 = <Image style={styles.logo} source={require('../assets/bat.png')} />
           }else{
           img1 = <Text activeOpacity={0} style={styles.buttonText}>
                  {Fighter1.cards[0]}
                 </Text>
           }
       if((p1 === 0) || (p1 === 1) || (p1 === 2) || (p1 === 3) || (p1 === 4)){  
-          img2 = <Image style={styles.logo} source={require('./assets/fist.png')} />
+          img2 = <Image style={styles.logo} source={require('../assets/fist.png')} />
           }else if((p1 === 5) || (p1 === 6) || (p1 === 7) || (p1 === 8)){
-          img2 = <Image style={styles.logo} source={require('./assets/boot.png')} />
+          img2 = <Image style={styles.logo} source={require('../assets/boot.png')} />
           }else if(p1 === 9){
-           img2 = <Image style={styles.logo} source={require('./assets/fireball.png')} />
+           img2 = <Image style={styles.logo} source={require('../assets/fireball.png')} />
           }else if(p1 === 10){
-           img2 = <Image style={styles.logo} source={require('./assets/heal.png')} />
+           img2 = <Image style={styles.logo} source={require('../assets/heal.png')} />
           }else if(p1 === 11){
-           img2 = <Image style={styles.logo} source={require('./assets/rest.png')} />
+           img2 = <Image style={styles.logo} source={require('../assets/rest.png')} />
           }else if(p1 === 12){
-           img2 = <Image style={styles.logo} source={require('./assets/multiplier.png')} />
+           img2 = <Image style={styles.logo} source={require('../assets/multiplier.png')} />
           }else if(p1 === 13){
-           img2 = <Image style={styles.logo} source={require('./assets/poison.png')} />
+           img2 = <Image style={styles.logo} source={require('../assets/poison.png')} />
           }else if(p1 === 14){
-           img2 = <Image style={styles.logo} source={require('./assets/freeze.png')} />
+           img2 = <Image style={styles.logo} source={require('../assets/freeze.png')} />
           }else if(p1 === 15){
-           img2 = <Image style={styles.logo} source={require('./assets/bat.png')} />
+           img2 = <Image style={styles.logo} source={require('../assets/bat.png')} />
           }else{
           img2 = <Text activeOpacity={0} style={styles.buttonText}>
                  {Fighter1.cards[1]}
                 </Text>
           }
       if((p2 === 0) || (p2 === 1) || (p2 === 2) || (p2 === 3) || (p2 === 4)){  
-          img3 = <Image style={styles.logo} source={require('./assets/fist.png')} />
+          img3 = <Image style={styles.logo} source={require('../assets/fist.png')} />
           }else if((p2 === 5) || (p2 === 6) || (p2 === 7) || (p2 === 8)){
-          img3 = <Image style={styles.logo} source={require('./assets/boot.png')} />
+          img3 = <Image style={styles.logo} source={require('../assets/boot.png')} />
           }else if(p2 === 9){
-           img3 = <Image style={styles.logo} source={require('./assets/fireball.png')} />
+           img3 = <Image style={styles.logo} source={require('../assets/fireball.png')} />
           }else if(p2 === 10){
-           img3 = <Image style={styles.logo} source={require('./assets/heal.png')} />
+           img3 = <Image style={styles.logo} source={require('../assets/heal.png')} />
           }else if(p2 === 11){
-           img3 = <Image style={styles.logo} source={require('./assets/rest.png')} />
+           img3 = <Image style={styles.logo} source={require('../assets/rest.png')} />
           }else if(p2 === 12){
-           img3 = <Image style={styles.logo} source={require('./assets/multiplier.png')} />
+           img3 = <Image style={styles.logo} source={require('../assets/multiplier.png')} />
           }else if(p2 === 13){
-           img3 = <Image style={styles.logo} source={require('./assets/poison.png')} />
+           img3 = <Image style={styles.logo} source={require('../assets/poison.png')} />
           }else if(p2 === 14){
-           img3 = <Image style={styles.logo} source={require('./assets/freeze.png')} />
+           img3 = <Image style={styles.logo} source={require('../assets/freeze.png')} />
           }else if(p2 === 15){
-           img3 = <Image style={styles.logo} source={require('./assets/bat.png')} />
+           img3 = <Image style={styles.logo} source={require('../assets/bat.png')} />
           }else{
           img3 = <Text activeOpacity={0} style={styles.buttonText}>
                  {Fighter1.cards[2]}
                 </Text>
           }
       if((p3 === 0) || (p3 === 1) || (p3 === 2) || (p3 === 3) || (p3 === 4)){  
-          img4 = <Image style={styles.logo} source={require('./assets/fist.png')} />
+          img4 = <Image style={styles.logo} source={require('../assets/fist.png')} />
           }else if((p3 === 5) || (p3 === 6) || (p3 === 7) || (p3 === 8)){
-          img4 = <Image style={styles.logo} source={require('./assets/boot.png')} />
+          img4 = <Image style={styles.logo} source={require('../assets/boot.png')} />
           }else if(p3 === 9){
-           img4 = <Image style={styles.logo} source={require('./assets/fireball.png')} />
+           img4 = <Image style={styles.logo} source={require('../assets/fireball.png')} />
           }else if(p3 === 10){
-           img4 = <Image style={styles.logo} source={require('./assets/heal.png')} />
+           img4 = <Image style={styles.logo} source={require('../assets/heal.png')} />
           }else if(p3 === 11){
-           img4 = <Image style={styles.logo} source={require('./assets/rest.png')} />
+           img4 = <Image style={styles.logo} source={require('../assets/rest.png')} />
           }else if(p3 === 12){
-           img4 = <Image style={styles.logo} source={require('./assets/multiplier.png')} />
+           img4 = <Image style={styles.logo} source={require('../assets/multiplier.png')} />
           }else if(p3 === 13){
-           img4 = <Image style={styles.logo} source={require('./assets/poison.png')} />
+           img4 = <Image style={styles.logo} source={require('../assets/poison.png')} />
           }else if(p3 === 14){
-           img4 = <Image style={styles.logo} source={require('./assets/freeze.png')} />
+           img4 = <Image style={styles.logo} source={require('../assets/freeze.png')} />
           }else if(p3 === 15){
-           img4 = <Image style={styles.logo} source={require('./assets/bat.png')} />
+           img4 = <Image style={styles.logo} source={require('../assets/bat.png')} />
           }else{
           img4 = <Text activeOpacity={0} style={styles.buttonText}>
                  {Fighter1.cards[3]}
                 </Text>
           }
       if((p4 === 0) || (p4 === 1) || (p4 === 2) || (p4 === 3) || (p4 === 4)){  
-          img5 = <Image style={styles.logo} source={require('./assets/fist.png')} />
+          img5 = <Image style={styles.logo} source={require('../assets/fist.png')} />
           }else if((p4 === 5) || (p4 === 6) || (p4 === 7) || (p4 === 8)){
-          img5 = <Image style={styles.logo} source={require('./assets/boot.png')} />
+          img5 = <Image style={styles.logo} source={require('../assets/boot.png')} />
           }else if(p4 === 9){
-           img5 = <Image style={styles.logo} source={require('./assets/fireball.png')} />
+           img5 = <Image style={styles.logo} source={require('../assets/fireball.png')} />
           }else if(p4 === 10){
-           img5 = <Image style={styles.logo} source={require('./assets/heal.png')} />
+           img5 = <Image style={styles.logo} source={require('../assets/heal.png')} />
           }else if(p4 === 11){
-           img5 = <Image style={styles.logo} source={require('./assets/rest.png')} />
+           img5 = <Image style={styles.logo} source={require('../assets/rest.png')} />
           }else if(p4 === 12){
-           img5 = <Image style={styles.logo} source={require('./assets/multiplier.png')} />
+           img5 = <Image style={styles.logo} source={require('../assets/multiplier.png')} />
           }else if(p4 === 13){
-           img5 = <Image style={styles.logo} source={require('./assets/poison.png')} />
+           img5 = <Image style={styles.logo} source={require('../assets/poison.png')} />
           }else if(p4 === 14){
-           img5 = <Image style={styles.logo} source={require('./assets/freeze.png')} />
+           img5 = <Image style={styles.logo} source={require('../assets/freeze.png')} />
           }else if(p4 === 15){
-           img5 = <Image style={styles.logo} source={require('./assets/bat.png')} />
+           img5 = <Image style={styles.logo} source={require('../assets/bat.png')} />
           }else{
           img5 = <Text activeOpacity={0} style={styles.buttonText}>
                  {Fighter1.cards[4]}

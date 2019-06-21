@@ -2,12 +2,12 @@ import * as React from 'react';
 import { AppRegistry } from 'react-native';
 import {createStackNavigator, createAppContainer} from 'react-navigation';
 
-import HomeScreen from './HomeScreen';
-import GameScreen from './GameScreen';
-import GameOverScreen from './GameOverScreen';
-import CardCatalogScreen from './CardCatalogScreen';
-import InstructionsScreen from './InstructionsScreen';
-import MatchHistoryScreen from './MatchHistoryScreen';
+import HomeScreen from './screens/HomeScreen';
+import GameScreen from './screens/GameScreen';
+import GameOverScreen from './screens/GameOverScreen';
+import CardCatalogScreen from './screens/CardCatalogScreen';
+import InstructionsScreen from './screens/InstructionsScreen';
+import MatchHistoryScreen from './screens/MatchHistoryScreen';
 
 const MainNavigator = createStackNavigator({
   Home: {screen: HomeScreen},

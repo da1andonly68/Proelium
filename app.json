@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "-proelium",
-    "description": "No description",
-    "slug": "snack-HkvFrsdyS",
+    "name": "proelium",
+    "description": "Turn based card game(no multiplayer capability)",
+    "slug": "snack-SJLxR15yH",
     "privacy": "unlisted",
     "sdkVersion": "33.0.0",
     "version": "1.0.0",

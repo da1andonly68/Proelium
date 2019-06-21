@@ -1,9 +1,17 @@
 import React from 'react';
-import { StyleSheet, Text, View, Navigator, Dimensions, Button, TouchableOpacity, Image, ScrollView
+import { 
+  StyleSheet, 
+  Text, 
+  View, 
+  Navigator, 
+  Dimensions, 
+  Button, 
+  TouchableOpacity, 
+  Image, 
+  ScrollView
 } from 'react-native';
 import CodePush from 'react-native-code-push';
-import { GameConsts } from './gamecode/Run';
-
+import { GameConsts } from '../gamecode/Run';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
