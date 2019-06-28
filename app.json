@@ -25,6 +25,8 @@
     ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "description": "Turn based Card game(No multiplayer functionality yet)",
+    "githubUrl": "https://github.com/da1andonly68/Proelium"
   }
 }
