@@ -123,12 +123,6 @@ export default class HomeScreen extends React.Component {
           </View>
 
         <View style={styles.bubbleSpacing}></View>
-
-          <View style={styles.menuBubble}>
-          <TouchableOpacity activeOpacity={0} onPress={() => navigate('History')}>
-          <Image style={styles.bubbleIcon} source={require('../assets/collection.png')}/>
-          </TouchableOpacity>
-          </View>
           
         </View>
 
@@ -202,14 +196,14 @@ const styles = StyleSheet.create({
   menuBubble:{
     width: 70 / 423.5 * width,
     height: 70 / 701.8 * height,
-    borderRadius: (70 / 2) / 423.5 * width / 701.8 * height,
+    borderRadius: (70 / 2) / 423.5 * width,
     backgroundColor: backgroundColorGlobal,
     zIndex: 6,
   },
   bubbleIcon: {
     height: (70 / 423.5) * width,
     width: (70 / 423.5) * width,
-    borderRadius: (70 / 2) / 423.5 * width / 701.8 * height,
+    borderRadius: (70 / 2) / 423.5 * width,
   },
   bubbleSpacing:{
     width: 20 / 423.5 * width,

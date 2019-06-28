@@ -359,7 +359,7 @@ export const styles = StyleSheet.create({
     height: 128 / 701.8 * height,
     fontSize: 36,
     justifyContent: 'center',
-    borderRadius: ((128 / 2) / 423.5 * width) / 701.8 * height,
+    borderRadius: ((128 / 2) / 423.5 * width),
     shadowOffset: { width: 1, height: 1 },
     shadowOpacity: 0.9,
     shadowRadius: 1 / 423.5 * width,
@@ -402,7 +402,7 @@ export const styles = StyleSheet.create({
     logo: {
     height: 128  / 423.5 * width,
     width: 128 / 701.8 * height,
-    borderRadius: ((128 / 2) / 423.5 * width) / 701.8 * height,
+    borderRadius: ((128 / 2) / 423.5 * width),
   },
 
 });

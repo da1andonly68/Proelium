@@ -7,7 +7,8 @@ import {
   Dimensions, 
   Button, 
   TouchableOpacity, 
-  Image
+  Image,
+  AsyncStorage,
 } from 'react-native';
 import Constants from 'expo-constants';
 import CodePush from 'react-native-code-push';
@@ -20,12 +21,39 @@ const backgroundColorGlobal= 'white';
 const pale = '#fcfbe3';
 
 export default class GameOverScreen extends React.Component{
-
+    state = {
+      'broze': '',
+      'silver': '',
+      'gold': '',
+      'trophy': '',
+      'bronzeSkulls':'',
+      'silverSkulls':'',
+      'goldSkulls':'',
+      'trophySkulls':'',
+   }
+    componentDidMount(){
+      AsyncStorage.getItem('broze').then((value) => this.setState({ 'broze': value }))
+      AsyncStorage.getItem('silver').then((value) => this.setState({ 'silver': value }))
+      AsyncStorage.getItem('gold').then((value) => this.setState({ 'gold': value }))
+      AsyncStorage.getItem('trophy').then((value) => this.setState({ 'trophy': value }))
+      AsyncStorage.getItem('brozeSkulls').then((value) => this.setState({ 'brozeSkulls': value }))
+      AsyncStorage.getItem('silverSkulls').then((value) => this.setState({ 'silverSkulls': value }))
+      AsyncStorage.getItem('goldSkulls').then((value) => this.setState({ 'goldSkulls': value }))
+      AsyncStorage.getItem('trophySkulls').then((value) => this.setState({ 'trophySkulls': value }))
+    }
+    
     resetGG(){
+      if(getDifficulty === "Easy"){
+        //do a thing
+      }
       resetGame();//sets all game values back to start and generates new hands
       this.setState({dummy: 1});//refreshes the screen
      }
-
+     
+   setBronze = (value) => {
+      AsyncStorage.setItem('broze', value);
+      this.setState({ 'broze': value });
+   }
   render(){
 
      const {navigate} = this.props.navigation;
@@ -73,7 +101,7 @@ const styles = StyleSheet.create({
     fontSize: 36,
     backgroundColor: backgroundColorGlobal,
     justifyContent: 'center',
-    borderRadius: (350 / 2) / 423.5 * width / 701.8 * height,
+    borderRadius: (350 / 2) / 423.5 * width,
     shadowOffset: { width: 10, height: 1 },
     shadowOpacity: 0.9,
     shadowRadius: 30,
@@ -84,7 +112,7 @@ const styles = StyleSheet.create({
     logo: {
     height: 350 / 423.5 * width,
     width: 350 / 423.5 * width,
-    borderRadius: (350 / 2) / 423.5 * width / 701.8 * height,
+    borderRadius: (350 / 2) / 423.5 * width,
   },
 
 });
