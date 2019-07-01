@@ -67,7 +67,7 @@ The Multiplier card doubles your next cards effect(without altering drain) and t
         <View style={styles.card}>
         <Text style={styles.header}>Difficulty</Text>
         <Text style={styles.paragraph}>
-In Easy mode, the bot does not parse his cards and pick strategically.
+In Easy mode, the bot picks cards at random with no strategy.
 In Normal mode, the bot picks cards strategically.
 In Hard mode, the bot has more health and energy than the player.
 Nightmare starts the player off with less health and less energy, so the bot has almost double health at the start and more than double the energy.
