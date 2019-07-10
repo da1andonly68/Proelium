@@ -49,7 +49,7 @@ export default class CardCatalogScreen extends React.Component{
                   <Text style={styles.description}>Deals {GameConsts.punchDamage} damage</Text>
                 </View>
                 <View style={styles.drainBox}>
-                  <Text style={styles.drainStam}>DRAIN: {GameConsts.punchDrain} stanima </Text>
+                  <Text style={styles.drainStam}>DRAIN: {GameConsts.punchDrain} stamina </Text>
                 </View>
               </View>
           </View>
@@ -66,7 +66,7 @@ export default class CardCatalogScreen extends React.Component{
                   <Text style={styles.description}>Deals {GameConsts.kickDamage} damage</Text>
                 </View>
                 <View style={styles.drainBox}>
-                  <Text style={styles.drainStam}>DRAIN: {GameConsts.kickDrain} stanima </Text>
+                  <Text style={styles.drainStam}>DRAIN: {GameConsts.kickDrain} stamina </Text>
                 </View>
               </View>
           </View>

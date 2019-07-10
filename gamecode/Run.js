@@ -40,6 +40,7 @@ var difficultySetting = "Normal";
 export var currentFighter = null;
 var moves = 0;
 export var opponentDisabled = false;
+var botMultiTurn = false;
 
 function Fighter(name){
     this.name = name
@@ -105,7 +106,7 @@ function manaUse(Fighter, drain){
     Fighter.mana = Math.round(Fighter.mana - drain);
 }
 
-function stanimaUse(Fighter, drain){
+function staminaUse(Fighter, drain){
     Fighter.stanima = Math.round(Fighter.stanima - drain);
 }
 
@@ -143,26 +144,26 @@ export function useCard(Fighter, placeInDeck){
     function punch(){
     if(enough(stam, PUNCHDRAIN)){
             damage(opp, PUCNHDAMAGE * scal);
-            stanimaUse(caster, PUNCHDRAIN);
+            staminaUse(caster, PUNCHDRAIN);
         }else{
           if(stam > 0){
             damage(opp, PUCNHDAMAGE * scal * partial(stam, PUNCHDRAIN));
-            stanimaUse(caster, PUNCHDRAIN * partial(stam, PUNCHDRAIN));
+            staminaUse(caster, PUNCHDRAIN * partial(stam, PUNCHDRAIN));
           }else{
-            stanimaUse(caster, -PUNCHDRAIN * scal);
+            staminaUse(caster, -PUNCHDRAIN * scal);
           }  
         } 
     }
     function kick(){
         if(enough(stam, KICKDRAIN)){
             damage(opp, KICKDAMAGE * scal); 
-            stanimaUse(caster, KICKDRAIN);
+            staminaUse(caster, KICKDRAIN);
         }else{
           if(stam > 0){
            damage(opp, KICKDAMAGE * scal * partial(stam, KICKDRAIN)); 
-            stanimaUse(caster, KICKDRAIN  * partial(stam, KICKDRAIN));
+            staminaUse(caster, KICKDRAIN  * partial(stam, KICKDRAIN));
           }else{
-            stanimaUse(caster, -KICKDRAIN * scal);
+            staminaUse(caster, -KICKDRAIN * scal);
           }
  
         }
@@ -196,18 +197,18 @@ export function useCard(Fighter, placeInDeck){
     function freeze(){
         if(enough(mana, FREEZEDRAIN)){
           if(opp.stanima >= FREEZEDAMAGE * scal){
-            stanimaUse(opp, FREEZEDAMAGE * scal);
+            staminaUse(opp, FREEZEDAMAGE * scal);
           }else{
-            stanimaUse(opp, opp.stanima);
+            staminaUse(opp, opp.stanima);
           }
            manaUse(caster, FREEZEDRAIN);
         }else{
           if(mana > 0){
           if(opp.stanima >= FREEZEDAMAGE * scal * partial(mana, FREEZEDRAIN) ){
-            damage(opp, FREEZEDAMAGE * scal * partial(mana, FREEZEDRAIN));
+            staminaUse(opp, FREEZEDAMAGE * scal * partial(mana, FREEZEDRAIN));
             manaUse(caster, FREEZEDRAIN * scal * partial(mana, FREEZEDRAIN));
           }else{
-            stanimaUse(opp, opp.stanima);
+            staminaUse(opp, opp.stanima);
           }
           }else{
             manaUse(caster, -FREEZEDRAIN * scal);
@@ -264,16 +265,16 @@ export function useCard(Fighter, placeInDeck){
     }
     function magnetize(){
       if(enough(mana, MAGNETIZEDRAIN)){
-        if(opp.stanima >= MAGNETIZEDAMAGE * scal){
+        if(opp.mana >= MAGNETIZEDAMAGE * scal){
           manaUse(opp, MAGNETIZEDAMAGE * scal);
         }else{
-          manaUse(opp, opp.stanima);
+          manaUse(opp, opp.mana);
         }
          manaUse(caster, MAGNETIZEDRAIN);
       }else{
         if(mana > 0){
         if(opp.stanima >= MAGNETIZEDAMAGE * scal * partial(mana, MAGNETIZEDRAIN) ){
-          damage(opp, MAGNETIZEDAMAGE * scal * partial(mana, MAGNETIZEDRAIN));
+          manaUse(opp, MAGNETIZEDAMAGE * scal * partial(mana, MAGNETIZEDRAIN));
           manaUse(caster, MAGNETIZEDRAIN * scal * partial(mana, MAGNETIZEDRAIN));
         }else{
           manaUse(opp, opp.mana);
@@ -318,7 +319,7 @@ export function useCard(Fighter, placeInDeck){
         heal();
         break;
         case 11: //Rest
-        stanimaUse(caster, -RESTBOOST * scal);
+        staminaUse(caster, -RESTBOOST * scal);
         manaUse(caster, -RESTBOOST * scal);
         break; 
         case 12: //Mult
@@ -340,10 +341,16 @@ export function useCard(Fighter, placeInDeck){
         if(currentFighter === Fighter1){
           Fighter2.screenMessage = "";
         }
+        if(currentFighter === Fighter2){
+          botMultiTurn = true;
+        }
         opponentDisabled = true;
         break;
         case 17:
         shock();
+        if(currentFighter === Fighter2){
+          botMultiTurn = true;
+        }
         break;
         case 18:
         magnetize();
@@ -381,10 +388,10 @@ export function burnCard(Fighter, placeInDeck){
     var opp = Fighter.enemey;
     
     function punch(){
-      stanimaUse(caster, -PUNCHDRAIN * scal);
+      staminaUse(caster, -PUNCHDRAIN * scal);
     }
     function kick(){
-       stanimaUse(caster, -KICKDRAIN * scal);
+       staminaUse(caster, -KICKDRAIN * scal);
     }
     function fireball(){
       manaUse(caster, -FIREBALLDRAIN * scal);
@@ -442,7 +449,7 @@ export function burnCard(Fighter, placeInDeck){
         heal();
         break;
         case 11: //Rest
-        stanimaUse(caster, -RESTBOOST * scal);
+        staminaUse(caster, -RESTBOOST * scal);
         manaUse(caster, -RESTBOOST * scal);
         break; 
         case 12: //Mult
@@ -507,7 +514,7 @@ export function gameOver(f1, f2){
     }
 
 }
-var lastCard = null;
+
 export function bot(){
   if(currentFighter === Fighter2){
   opponentDisabled = false;
@@ -518,11 +525,11 @@ export function bot(){
   }
 
   if(!gameOver(Fighter1, Fighter2) && !opponentDisabled){
-  if(lastCard === null){
-    Fighter2.screenMessage = "Opponent has cast " + Fighter2.curCard;
-  } else{
-    Fighter2.screenMessage = "Opponent has cast multiple cards";
-  }
+    if(!botMultiTurn){
+      Fighter2.screenMessage = "Opponent has cast " + Fighter2.curCard;
+    }else{
+      Fighter2.screenMessage = "Opponent has cast multiple cards";
+    }
 
   }else{
   Fighter2.screenMessage = "";
@@ -530,10 +537,8 @@ export function bot(){
   moves++;
   }
   if(currentFighter === Fighter2){
-    var lastCard = Fighter2.curCard;
     bot();
   }
-  lastCard = null;
 }
 
 function smartBot(){
@@ -665,6 +670,7 @@ export function getNextFighter(){
       if(coinFlip == 1){
           currentFighter = Fighter1;
           opponentDisabled = false;
+          botMultiTurn = false;
           return Fighter1;
       }else if(coinFlip == 0){
           currentFighter = Fighter2;
@@ -679,6 +685,7 @@ export function getNextFighter(){
               return Fighter2; 
           }else if(currentFighter === Fighter2){
               currentFighter = Fighter1;
+              botMultiTurn = false;
               return Fighter1;
           }else{
               currentFighter = null;
