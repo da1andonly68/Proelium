@@ -2,15 +2,11 @@ import React from 'react';
 import { 
   StyleSheet, 
   Text, 
-  View, 
-  Navigator, 
+  View,  
   Dimensions, 
-  Button, 
-  TouchableOpacity, 
   Image, 
   ScrollView
 } from 'react-native';
-import CodePush from 'react-native-code-push';
 import { GameConsts } from '../gamecode/Run';
 
 

@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-import Constants from 'expo-constants';
+import { database } from '../App.js';
 import { randomNum, bot, setDifficulty, resetGame } from '../gamecode/Run';
 
 const width = Dimensions.get('window').width;
@@ -24,10 +24,26 @@ export var difficulty = "Normal";
 
 export default class HomeScreen extends React.Component {
   
+  async componentDidMount(){
+    database.collection("Medals").doc("Data").set({
+      name: "Keanu",
+      bronze: "70",
+      silver: "120",
+      gold: "50",
+      trophies: "15"
+    })
+    .then(function() {
+      console.log("Document successfully written!"); 
+    })
+    .catch(function(error) {
+      console.error("Error writing document: ", error);
+    });
+  }
   startGame(){
     this.setDifficulty();
     resetGame();
     this.botGoesFirst();
+
   }
 
   botGoesFirst() {
