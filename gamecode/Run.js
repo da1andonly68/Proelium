@@ -276,7 +276,7 @@ export function useCard(Fighter, placeInDeck){
           damage(opp, MAGNETIZEDAMAGE * scal * partial(mana, MAGNETIZEDRAIN));
           manaUse(caster, MAGNETIZEDRAIN * scal * partial(mana, MAGNETIZEDRAIN));
         }else{
-          manaUse(opp, opp.stanima);
+          manaUse(opp, opp.mana);
         }
         }else{
           manaUse(caster, -MAGNETIZEDRAIN * scal);
@@ -507,7 +507,7 @@ export function gameOver(f1, f2){
     }
 
 }
-
+var lastCard = null;
 export function bot(){
   if(currentFighter === Fighter2){
   opponentDisabled = false;
@@ -518,15 +518,22 @@ export function bot(){
   }
 
   if(!gameOver(Fighter1, Fighter2) && !opponentDisabled){
-  Fighter2.screenMessage = "Opponent has cast " + Fighter2.curCard;
+  if(lastCard === null){
+    Fighter2.screenMessage = "Opponent has cast " + Fighter2.curCard;
+  } else{
+    Fighter2.screenMessage = "Opponent has cast multiple cards";
+  }
+
   }else{
   Fighter2.screenMessage = "";
   }
   moves++;
   }
   if(currentFighter === Fighter2){
+    var lastCard = Fighter2.curCard;
     bot();
   }
+  lastCard = null;
 }
 
 function smartBot(){
