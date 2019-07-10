@@ -10,7 +10,6 @@ import {
   Image, 
   ScrollView, 
 } from 'react-native';
-import CodePush from 'react-native-code-push';
 import { GameConsts } from '../gamecode/Run';
 
 const width = Dimensions.get('window').width;

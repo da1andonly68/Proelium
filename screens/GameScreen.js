@@ -9,31 +9,22 @@ import {
   Button, 
   TouchableOpacity 
   } from 'react-native';
-import App from '../App';
-import { Fighter1, Fighter2, GameConsts, damage, useCard, burnCard, bot, screenMessage, gameOver }from '../gamecode/Run';
+import { Fighter1, Fighter2, useCard, burnCard, bot, gameOver, opponentDisabled} from '../gamecode/Run';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 var backgroundColorGlobal = 'white';
-var moves = 0;
-
 export default class GameScreen extends React.Component {
 
 playCard(cardNum){
   this.setState({dummy: 1});
   useCard(Fighter1, cardNum);
-  moves++;
-  if(!gameOver(Fighter1, Fighter2)){
   bot();
-  moves++;
-  }
 }
 burnCard(cardNum){
   burnCard(Fighter1, cardNum);
-  moves++;
   if(!gameOver(Fighter1, Fighter2)){
   bot();
-  moves++;
   }
   this.setState({dummy: 1});
 }
@@ -72,6 +63,10 @@ burnCard(cardNum){
            img1 = <Image style={styles.logo} source={require('../assets/freeze.png')} />
           }else if(p0 === 15){
            img1 = <Image style={styles.logo} source={require('../assets/bat.png')} />
+          }else if(p0 === 16){
+            img1 = <Image style={styles.logo} source={require('../assets/combo.png')} />
+          }else if(p0 === 17){
+            img1 = <Image style={styles.logo} source={require('../assets/shock.png')} />
           }else{
           img1 = <Text activeOpacity={0} style={styles.buttonText}>
                  {Fighter1.cards[0]}
@@ -95,6 +90,10 @@ burnCard(cardNum){
            img2 = <Image style={styles.logo} source={require('../assets/freeze.png')} />
           }else if(p1 === 15){
            img2 = <Image style={styles.logo} source={require('../assets/bat.png')} />
+          }else if(p1 === 16){
+            img2 = <Image style={styles.logo} source={require('../assets/combo.png')} />
+          }else if(p1 === 17){
+            img2 = <Image style={styles.logo} source={require('../assets/shock.png')} />
           }else{
           img2 = <Text activeOpacity={0} style={styles.buttonText}>
                  {Fighter1.cards[1]}
@@ -118,6 +117,10 @@ burnCard(cardNum){
            img3 = <Image style={styles.logo} source={require('../assets/freeze.png')} />
           }else if(p2 === 15){
            img3 = <Image style={styles.logo} source={require('../assets/bat.png')} />
+          }else if(p2 === 16){
+            img3 = <Image style={styles.logo} source={require('../assets/combo.png')} />
+          }else if(p2 === 17){
+            img3 = <Image style={styles.logo} source={require('../assets/shock.png')} />
           }else{
           img3 = <Text activeOpacity={0} style={styles.buttonText}>
                  {Fighter1.cards[2]}
@@ -141,6 +144,10 @@ burnCard(cardNum){
            img4 = <Image style={styles.logo} source={require('../assets/freeze.png')} />
           }else if(p3 === 15){
            img4 = <Image style={styles.logo} source={require('../assets/bat.png')} />
+          }else if(p3 === 16){
+            img4 = <Image style={styles.logo} source={require('../assets/combo.png')} />
+          }else if(p3 === 17){
+            img4 = <Image style={styles.logo} source={require('../assets/shock.png')} />
           }else{
           img4 = <Text activeOpacity={0} style={styles.buttonText}>
                  {Fighter1.cards[3]}
@@ -164,12 +171,21 @@ burnCard(cardNum){
            img5 = <Image style={styles.logo} source={require('../assets/freeze.png')} />
           }else if(p4 === 15){
            img5 = <Image style={styles.logo} source={require('../assets/bat.png')} />
+          }else if(p4 === 16){
+            img5 = <Image style={styles.logo} source={require('../assets/combo.png')} />
+          }else if(p4 === 17){
+            img5 = <Image style={styles.logo} source={require('../assets/shock.png')} />
           }else{
           img5 = <Text activeOpacity={0} style={styles.buttonText}>
                  {Fighter1.cards[4]}
                 </Text>
           }
-
+    let oppDisplay;
+    if(opponentDisabled === true){
+      oppDisplay = <Text style={styles.ohealthDisabled}>{Fighter2.health}</Text>
+    }else{
+      oppDisplay = <Text style={styles.ohealth}>{Fighter2.health}</Text>
+    }
     let card1;
     let card2;
     let card3;
@@ -225,13 +241,12 @@ burnCard(cardNum){
         </View>
     <View style={styles.statBox}>   
       <View>
-
-          <Text style={styles.ohealth}>{Fighter2.health}</Text>
+          {oppDisplay}
       </View>
     </View>
 
     <View style={styles.messageBox}>
-      <Text style={styles.message}> {Fighter2.screenMessage} </Text>
+      <Text style={styles.message}> {Fighter2.screenMessage}</Text>
     </View>
 
     <View style={styles.handBox1}>
@@ -270,7 +285,6 @@ burnCard(cardNum){
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: GameConsts.statusBarHeight,
     backgroundColor: backgroundColorGlobal,
   },
   statBox:{
@@ -291,6 +305,14 @@ export const styles = StyleSheet.create({
   ohealth:{
     fontFamily: 'Verdana',
     color: 'red',
+    textAlign: 'center',
+    fontSize: 150 / 701.8 * height,
+    fontWeight: 'bold',
+    justifyContent: 'center',
+  },
+  ohealthDisabled:{
+    fontFamily: 'Verdana',
+    color: '#2F4F4F',
     textAlign: 'center',
     fontSize: 150 / 701.8 * height,
     fontWeight: 'bold',

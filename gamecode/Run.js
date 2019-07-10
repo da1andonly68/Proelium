@@ -25,7 +25,9 @@ const LEECHTRANSFER = 10;
 const LEECHDRAIN = 5;
 const POISONDAMAGE = 5;
 const POISONDRAIN = 3;
-const SPACINNN = "                                           ";
+const SHOCKDAMAGE = 6;
+const SHOCKDRAIN = 7;
+const SHOCKSTUN = 1;
 const HIGHESTSTAMDRAIN = KICKDRAIN;
 const HIGHESTMANADRAIN = FIREBALLDRAIN;
 
@@ -33,6 +35,9 @@ export var winner = "NONE";
 var screenMessage = "";
 export var reset = false;
 var difficultySetting = "Normal";
+export var currentFighter = null;
+var moves = 0;
+export var opponentDisabled = false;
 
 function Fighter(name){
     this.name = name
@@ -73,6 +78,8 @@ function GameConstants(){
   this.restBoost = RESTBOOST;
   this.leechTransfer = LEECHTRANSFER;
   this.leechDrain = LEECHDRAIN;
+  this.shockDamage = SHOCKDAMAGE;
+  this.shockDrain = SHOCKDRAIN;
 }
 
 function generateCards(Fighter, num){
@@ -99,10 +106,10 @@ function stanimaUse(Fighter, drain){
 }
 
 var cardNames = [
-    "Punch", "Punch","Punch", "Punch", "Punch", "Kick", "Kick", "Kick", "Kick", "Fireball", "Heal", "Rest", "Multiplier", "Poison", "Freeze", "Leech"
+    "Punch", "Punch","Punch", "Punch", "Punch", "Kick", "Kick", "Kick", "Kick", "Fireball", "Heal", "Rest", "Multiplier", "Poison", "Freeze", "Leech", "Combo", "Shock"
 ]
 var cardChars = [
-    "P", "P","P", "P", "P", "K", "K", "K", "K", "F", "H", "R", "M", "Po", "Fr", "L"
+    "P", "P","P", "P", "P", "K", "K", "K", "K", "F", "H", "R", "M", "Po", "Fr", "L", "C", "S"
 ]
 
 //PUT COMBO BACK IN
@@ -236,6 +243,21 @@ export function useCard(Fighter, placeInDeck){
         }
       }
     }
+    function shock(){
+      if(enough(mana, SHOCKDRAIN)){
+        damage(opp, SHOCKDAMAGE * scal);
+        manaUse(caster, SHOCKDRAIN);
+        Fighter.extraMoves = (1 * scal) + Fighter.extraMoves;
+        Fighter.endOfTurn = moves + 1 + (1 * scal) + Fighter.extraMoves;
+        if(currentFighter === Fighter1){
+          Fighter2.screenMessage = "";
+        }
+        opponentDisabled = true;
+      }else{
+        damage(opp, SHOCKDAMAGE * scal * partial(mana, SHOCKDRAIN))
+        manaUse(caster, SHOCKDRAIN * partial(mana, SHOCKDRAIN));
+      }
+    }
     switch(using){
         case 0: //Punch
         punch();
@@ -287,6 +309,17 @@ export function useCard(Fighter, placeInDeck){
         case 15:
         leech();
         break;
+        case 16:
+        Fighter.extraMoves = (2 * scal) + Fighter.extraMoves;
+        Fighter.endOfTurn = moves + 1 + (2 * scal) + Fighter.extraMoves;
+        if(currentFighter === Fighter1){
+          Fighter2.screenMessage = "";
+        }
+        opponentDisabled = true;
+        break;
+        case 17:
+        shock();
+        break;
     }
     Fighter.lastCard = Fighter.cards[placeInDeck];
     Fighter.curCard = Fighter.namesCards[placeInDeck];
@@ -301,6 +334,13 @@ export function useCard(Fighter, placeInDeck){
     if(!caster.emult){
       caster.scaler = 1;
     }
+    if(Fighter.extraMoves > 0){
+      Fighter.extraMoves -= 1;
+    }else{
+      Fighter.endOfTurn = moves + 1;
+    }
+    moves++;
+    getNextFighter();
 }
 
 export function burnCard(Fighter, placeInDeck){
@@ -419,15 +459,23 @@ export function gameOver(f1, f2){
 }
 
 export function bot(){
-
+  if(currentFighter === Fighter2){
+  opponentDisabled = false;
   if(!(difficultySetting === "Easy")){
     smartBot();
   }else{
      useCard(Fighter2, randomNum(0, DECKSIZE - 1));
   }
 
-  if(!gameOver(Fighter1, Fighter2)){
+  if(!gameOver(Fighter1, Fighter2) && !opponentDisabled){
   Fighter2.screenMessage = "Opponent has cast " + Fighter2.curCard;
+  }else{
+  Fighter2.screenMessage = "";
+  }
+  moves++;
+  }
+  if(currentFighter === Fighter2){
+    bot();
   }
 }
 
@@ -472,9 +520,24 @@ function smartBot(){
         }
       }
 
-      //use multiplier is available
+      //use multiplier if available
       for(i = 0; i < Fighter2.DECKSIZE; i++){
         if(bot.cards[i] === "M"){
+          useCard(Fighter2, i);
+          cardUsed = true;
+        }
+      }
+      //use combo 
+      for(i = 0; i < Fighter2.DECKSIZE; i++){
+        if(bot.cards[i] === "C"){
+          useCard(Fighter2, i);
+          cardUsed = true;
+        }
+      }
+
+      //if mana affords and is avaiable, cast shock
+      for(i = 0; i < Fighter2.DECKSIZE; i++){
+        if(bot.cards[i] === "S"){
           useCard(Fighter2, i);
           cardUsed = true;
         }
@@ -533,6 +596,37 @@ function smartBot(){
         cardUsed = true;
     }
 }
+export function getNextFighter(){
+  if(currentFighter === null){
+      var coinFlip = randomNum(0, 1);
+      if(coinFlip == 1){
+          currentFighter = Fighter1;
+          opponentDisabled = false;
+          return Fighter1;
+      }else if(coinFlip == 0){
+          currentFighter = Fighter2;
+          opponentDisabled = false;
+          return Fighter2;
+      }
+  }else{
+      if(currentFighter.endOfTurn === moves){
+          if(currentFighter === Fighter1){
+              currentFighter = Fighter2;
+              opponentDisabled = false;
+              return Fighter2; 
+          }else if(currentFighter === Fighter2){
+              currentFighter = Fighter1;
+              return Fighter1;
+          }else{
+              currentFighter = null;
+              getNextFighter();
+          }
+      }else{
+          return currentFighter;
+      }
+  
+  }
+}
 export function setDifficulty(difficulty){
   difficultySetting = difficulty;
 }
@@ -542,6 +636,8 @@ export function getDifficulty(){
 }
 
 export function resetGame(){
+  currentFighter = null;
+  getNextFighter();
   if(!((difficultySetting === "Hard") || (difficultySetting === "Nightmare"))){
   Fighter2.health = STARTHEALTH;
   Fighter2.stanima = STARTSTANIMA;
@@ -575,5 +671,5 @@ Fighter1.enemey(Fighter2);
 Fighter2.enemey(Fighter1);
 generateCards(Fighter1, 5);
 generateCards(Fighter2, 5);
-
+getNextFighter();
 export var GameConsts = new GameConstants();

@@ -9,8 +9,7 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-import Constants from 'expo-constants';
-import { randomNum, bot, setDifficulty, resetGame } from '../gamecode/Run';
+import { randomNum, bot, setDifficulty, resetGame, getNextFighter, Fighter2} from '../gamecode/Run';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -27,14 +26,7 @@ export default class HomeScreen extends React.Component {
   startGame(){
     this.setDifficulty();
     resetGame();
-    this.botGoesFirst();
-  }
-
-  botGoesFirst() {
-    var num = randomNum(0, 1);
-    if (num === 1) {
-      bot();
-    }
+    bot();
   }
 
   getDifficulty(diff){

@@ -10,7 +10,6 @@ import {
   Image, 
   ScrollView
 } from 'react-native';
-import CodePush from 'react-native-code-push';
 import { GameConsts } from '../gamecode/Run';
 
 
@@ -47,7 +46,7 @@ export default class CardCatalogScreen extends React.Component{
                   <Text style={styles.cardName}>PUNCH</Text>
                 </View>
                 <View style={styles.descriptionBox}>
-                  <Text style={styles.description}>Deals {GameConsts.punchDamage} damage to opponent</Text>
+                  <Text style={styles.description}>Deals {GameConsts.punchDamage} damage</Text>
                 </View>
                 <View style={styles.drainBox}>
                   <Text style={styles.drainStam}>DRAIN: {GameConsts.punchDrain} stanima </Text>
@@ -64,7 +63,7 @@ export default class CardCatalogScreen extends React.Component{
                   <Text style={styles.cardName}>KICK</Text>
                 </View>
                 <View style={styles.descriptionBox}>
-                  <Text style={styles.description}>Deals {GameConsts.kickDamage} damage to opponent</Text>
+                  <Text style={styles.description}>Deals {GameConsts.kickDamage} damage</Text>
                 </View>
                 <View style={styles.drainBox}>
                   <Text style={styles.drainStam}>DRAIN: {GameConsts.kickDrain} stanima </Text>
@@ -96,7 +95,7 @@ export default class CardCatalogScreen extends React.Component{
                   <Text style={styles.cardName}>LEECH</Text>
                 </View>
                 <View style={styles.descriptionBox}>
-                  <Text style={styles.description}>Steals {GameConsts.leechTransfer} health from opponent</Text>
+                  <Text style={styles.description}>Steals {GameConsts.leechTransfer} health</Text>
                 </View>
                 <View style={styles.drainBox}>
                   <Text style={styles.drainMana}>DRAIN: {GameConsts.leechDrain} mana </Text>
@@ -130,7 +129,7 @@ export default class CardCatalogScreen extends React.Component{
                   <Text style={styles.cardName}>FIREBALL</Text>
                 </View>
                 <View style={styles.descriptionBox}>
-                  <Text style={styles.description}>Deals {GameConsts.fireballDamage} damage to opponent</Text>
+                  <Text style={styles.description}>Deals {GameConsts.fireballDamage} damage</Text>
                 </View>
                 <View style={styles.drainBox}>
                   <Text style={styles.drainMana}>DRAIN: {GameConsts.fireballDrain} mana </Text>
@@ -190,6 +189,41 @@ export default class CardCatalogScreen extends React.Component{
         </View>
 
         <View style={styles.spacing}></View>    
+
+        <View style={styles.contentBox}>
+            <View style={styles.imgBox}><Image style={styles.imgBox} source={require('../assets/combo.png')} /></View>
+              <View style={styles.infoBox}>
+                <View style={styles.cardNameBox}>
+                  <Text style={styles.cardName}>COMBO</Text>
+                </View>
+                <View style={styles.descriptionBox}>
+                  <Text style={styles.description}>Allows two cards to be cast that turn</Text>
+                </View>
+                <View style={styles.drainBox}>
+                  <Text style={styles.drain}>DRAIN: none </Text>
+                </View>
+              </View>
+        </View>
+
+        <View style={styles.spacing}></View>    
+
+        <View style={styles.contentBox}>
+            <View style={styles.imgBox}><Image style={styles.imgBox} source={require('../assets/shock.png')} /></View>
+              <View style={styles.infoBox}>
+                <View style={styles.cardNameBox}>
+                  <Text style={styles.cardName}>SHOCK</Text>
+                </View>
+                <View style={styles.descriptionBox}>
+                  <Text style={styles.description}>Deals {GameConsts.shockDamage} damage and stuns for a turn</Text>
+                </View>
+                <View style={styles.drainBox}>
+                  <Text style={styles.drainMana}>DRAIN: {GameConsts.shockDrain} mana</Text>
+                </View>
+              </View>
+        </View>
+
+        <View style={styles.spacing}></View>    
+
         <View style={styles.spacing}></View>
 
         <View style={styles.bottom}></View>
@@ -297,12 +331,12 @@ const styles = StyleSheet.create({
   },
   drainMana:{
     fontSize: 25 / 701.8 * height,
-    color: 'blue',
+    color: '#add8e6',
     fontWeight: 'bold',
   },
   drainStam:{
     fontSize: 25 / 701.8 * height,
-    color: limeGreen,
+    color:	'#98FB98',
     fontWeight: 'bold',
   }
 });

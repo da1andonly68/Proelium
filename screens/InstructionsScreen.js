@@ -2,24 +2,15 @@ import React from 'react';
 import { 
   StyleSheet, 
   Text, 
-  View, 
-  Navigator, 
+  View,  
   Dimensions, 
-  Button, 
-  TouchableOpacity, 
-  Image, 
   ScrollView
 } from 'react-native';
-import CodePush from 'react-native-code-push';
-import { GameConsts } from '../gamecode/Run';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 const backgroundColorGlobal= 'white';
 const darkGrey = '#666666';
-const infoBoxColor = darkGrey;
-const limeGreen = '#32CD32';
-
 
 export default class InstructionsScreen extends React.Component{
 
@@ -72,6 +63,15 @@ In Normal mode, the bot picks cards strategically.
 In Hard mode, the bot has more health and energy than the player.
 Nightmare starts the player off with less health and less energy, so the bot has almost double health at the start and more than double the energy.
 After selecting a difficulty, click on the image in the middle of the screen to start a match.{"\n"}
+        </Text>
+        </View>
+
+        <View style={styles.spacing}></View>
+
+        <View style={styles.card}>
+        <Text style={styles.header}>Combo</Text>
+        <Text style={styles.paragraph}>
+        The combo card allows the user to play multiple turns at once. They may be stacked and are scaled by multiplier cards.
         </Text>
         </View>
 

@@ -11,7 +11,6 @@ import {
   AsyncStorage,
 } from 'react-native';
 import Constants from 'expo-constants';
-import CodePush from 'react-native-code-push';
 import { winner, Fighter1, resetGame, getDifficulty } from '../gamecode/Run';
 
 
