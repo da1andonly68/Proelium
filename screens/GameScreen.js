@@ -67,6 +67,8 @@ burnCard(cardNum){
             img1 = <Image style={styles.logo} source={require('../assets/combo.png')} />
           }else if(p0 === 17){
             img1 = <Image style={styles.logo} source={require('../assets/shock.png')} />
+          }else if(p0 === 18){
+            img1 = <Image style={styles.logo} source={require('../assets/magnet.png')} />
           }else{
           img1 = <Text activeOpacity={0} style={styles.buttonText}>
                  {Fighter1.cards[0]}
@@ -94,6 +96,8 @@ burnCard(cardNum){
             img2 = <Image style={styles.logo} source={require('../assets/combo.png')} />
           }else if(p1 === 17){
             img2 = <Image style={styles.logo} source={require('../assets/shock.png')} />
+          }else if(p1 === 18){
+            img2 = <Image style={styles.logo} source={require('../assets/magnet.png')} />
           }else{
           img2 = <Text activeOpacity={0} style={styles.buttonText}>
                  {Fighter1.cards[1]}
@@ -121,6 +125,8 @@ burnCard(cardNum){
             img3 = <Image style={styles.logo} source={require('../assets/combo.png')} />
           }else if(p2 === 17){
             img3 = <Image style={styles.logo} source={require('../assets/shock.png')} />
+          }else if(p2 === 18){
+            img3 = <Image style={styles.logo} source={require('../assets/magnet.png')} />
           }else{
           img3 = <Text activeOpacity={0} style={styles.buttonText}>
                  {Fighter1.cards[2]}
@@ -148,6 +154,8 @@ burnCard(cardNum){
             img4 = <Image style={styles.logo} source={require('../assets/combo.png')} />
           }else if(p3 === 17){
             img4 = <Image style={styles.logo} source={require('../assets/shock.png')} />
+          }else if(p3 === 18){
+            img4 = <Image style={styles.logo} source={require('../assets/magnet.png')} />
           }else{
           img4 = <Text activeOpacity={0} style={styles.buttonText}>
                  {Fighter1.cards[3]}
@@ -175,6 +183,8 @@ burnCard(cardNum){
             img5 = <Image style={styles.logo} source={require('../assets/combo.png')} />
           }else if(p4 === 17){
             img5 = <Image style={styles.logo} source={require('../assets/shock.png')} />
+          }else if(p4 === 18){
+            img5 = <Image style={styles.logo} source={require('../assets/magnet.png')} />
           }else{
           img5 = <Text activeOpacity={0} style={styles.buttonText}>
                  {Fighter1.cards[4]}

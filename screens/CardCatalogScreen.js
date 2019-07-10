@@ -221,6 +221,22 @@ export default class CardCatalogScreen extends React.Component{
                 </View>
               </View>
         </View>
+                <View style={styles.spacing}></View>  
+
+        <View style={styles.contentBox}>
+            <View style={styles.imgBox}><Image style={styles.imgBox} source={require('../assets/magnet.png')} /></View>
+              <View style={styles.infoBox}>
+                <View style={styles.cardNameBox}>
+                  <Text style={styles.cardName}>MAGNETIZE</Text>
+                </View>
+                <View style={styles.descriptionBox}>
+                  <Text style={styles.description}>Reduces opponents mana by {GameConsts.magnetDamage}</Text>
+                </View>
+                <View style={styles.drainBox}>
+                  <Text style={styles.drainMana}>DRAIN: {GameConsts.magnetDrain} mana </Text>
+                </View>
+              </View>
+        </View>
 
         <View style={styles.spacing}></View>    
 

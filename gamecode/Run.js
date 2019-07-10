@@ -28,6 +28,8 @@ const POISONDRAIN = 3;
 const SHOCKDAMAGE = 6;
 const SHOCKDRAIN = 7;
 const SHOCKSTUN = 1;
+const MAGNETIZEDAMAGE = 20;
+const MAGNETIZEDRAIN = 15;
 const HIGHESTSTAMDRAIN = KICKDRAIN;
 const HIGHESTMANADRAIN = FIREBALLDRAIN;
 
@@ -80,6 +82,8 @@ function GameConstants(){
   this.leechDrain = LEECHDRAIN;
   this.shockDamage = SHOCKDAMAGE;
   this.shockDrain = SHOCKDRAIN;
+  this.magnetDamage = MAGNETIZEDAMAGE;
+  this.magnetDrain = MAGNETIZEDRAIN;
 }
 
 function generateCards(Fighter, num){
@@ -106,10 +110,10 @@ function stanimaUse(Fighter, drain){
 }
 
 var cardNames = [
-    "Punch", "Punch","Punch", "Punch", "Punch", "Kick", "Kick", "Kick", "Kick", "Fireball", "Heal", "Rest", "Multiplier", "Poison", "Freeze", "Leech", "Combo", "Shock"
+    "Punch", "Punch","Punch", "Punch", "Punch", "Kick", "Kick", "Kick", "Kick", "Fireball", "Heal", "Rest", "Multiplier", "Poison", "Freeze", "Leech", "Combo", "Shock", "Magnetize"
 ]
 var cardChars = [
-    "P", "P","P", "P", "P", "K", "K", "K", "K", "F", "H", "R", "M", "Po", "Fr", "L", "C", "S"
+    "P", "P","P", "P", "P", "K", "K", "K", "K", "F", "H", "R", "M", "Po", "Fr", "L", "C", "S", "Ma"
 ]
 
 //PUT COMBO BACK IN
@@ -247,8 +251,8 @@ export function useCard(Fighter, placeInDeck){
       if(enough(mana, SHOCKDRAIN)){
         damage(opp, SHOCKDAMAGE * scal);
         manaUse(caster, SHOCKDRAIN);
-        Fighter.extraMoves = (1 * scal) + Fighter.extraMoves;
-        Fighter.endOfTurn = moves + 1 + (1 * scal) + Fighter.extraMoves;
+        Fighter.extraMoves = (SHOCKSTUN * scal) + Fighter.extraMoves;
+        Fighter.endOfTurn = moves + 1 + (SHOCKSTUN * scal) + Fighter.extraMoves;
         if(currentFighter === Fighter1){
           Fighter2.screenMessage = "";
         }
@@ -257,6 +261,27 @@ export function useCard(Fighter, placeInDeck){
         damage(opp, SHOCKDAMAGE * scal * partial(mana, SHOCKDRAIN))
         manaUse(caster, SHOCKDRAIN * partial(mana, SHOCKDRAIN));
       }
+    }
+    function magnetize(){
+      if(enough(mana, MAGNETIZEDRAIN)){
+        if(opp.stanima >= MAGNETIZEDAMAGE * scal){
+          manaUse(opp, MAGNETIZEDAMAGE * scal);
+        }else{
+          manaUse(opp, opp.stanima);
+        }
+         manaUse(caster, MAGNETIZEDRAIN);
+      }else{
+        if(mana > 0){
+        if(opp.stanima >= MAGNETIZEDAMAGE * scal * partial(mana, MAGNETIZEDRAIN) ){
+          damage(opp, MAGNETIZEDAMAGE * scal * partial(mana, MAGNETIZEDRAIN));
+          manaUse(caster, MAGNETIZEDRAIN * scal * partial(mana, MAGNETIZEDRAIN));
+        }else{
+          manaUse(opp, opp.stanima);
+        }
+        }else{
+          manaUse(caster, -MAGNETIZEDRAIN * scal);
+        }
+      }     
     }
     switch(using){
         case 0: //Punch
@@ -320,6 +345,9 @@ export function useCard(Fighter, placeInDeck){
         case 17:
         shock();
         break;
+        case 18:
+        magnetize();
+        break;
     }
     Fighter.lastCard = Fighter.cards[placeInDeck];
     Fighter.curCard = Fighter.namesCards[placeInDeck];
@@ -373,6 +401,12 @@ export function burnCard(Fighter, placeInDeck){
     function poison(){
       manaUse(caster, -POISONDRAIN * scal);
     }
+    function shock(){
+      manaUse(caster, -SHOCKDRAIN * scal);
+    }
+    function magnetize(){
+      manaUse(caster, -MAGNETIZEDRAIN * scal);
+    }
     switch(using){
        case 0: //Punch
         punch();
@@ -424,6 +458,20 @@ export function burnCard(Fighter, placeInDeck){
         case 15:
         leech();
         break;
+        case 16:
+        Fighter.extraMoves = (2 * scal) + Fighter.extraMoves;
+        Fighter.endOfTurn = moves + 1 + (2 * scal) + Fighter.extraMoves;
+        if(currentFighter === Fighter1){
+          Fighter2.screenMessage = "";
+        }
+        opponentDisabled = true;
+        break;
+        case 17:
+        shock();
+        break;
+        case 18:
+        magnetize();
+        break;
     }
     Fighter.lastCard = Fighter.cards[placeInDeck];
     Fighter.curCard = Fighter.namesCards[placeInDeck];
@@ -438,6 +486,8 @@ export function burnCard(Fighter, placeInDeck){
     if(!caster.emult){
       caster.scaler = 1;
     }
+    moves++;
+    getNextFighter();
 }
 
 export function randomNum(min, max) {//MAX INCLUDED
@@ -485,7 +535,7 @@ function smartBot(){
     var mana = Fighter2.mana;
     var stanima = Fighter2.stanima;
     var cardUsed = false;
-
+    
     while(!cardUsed){//Ensures that only one card is selected
 
       //If opponent is vulnerable, deliver killshot with kick
@@ -550,7 +600,13 @@ function smartBot(){
           cardUsed = true;
         }
       }
-
+      //if mana affords and is available, cast magnetize
+      for(i = 0; i < Fighter2.DECKSIZE; i++){
+        if((mana >= MAGNETIZEDRAIN) && (bot.cards[i] === "Ma")){
+          useCard(Fighter2, i);
+          cardUsed = true;
+        }
+      }
       //if mana affords and is avaiable, cast freeze
       for(i = 0; i < Fighter2.DECKSIZE; i++){
         if((mana >= FREEZEDRAIN) && (bot.cards[i] === "Fr")){

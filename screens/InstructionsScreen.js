@@ -41,7 +41,7 @@ Proelium is a turn based card game. Click on a card to use it. To see what cards
         <View style={styles.card}>
           <Text style={styles.header}>Energy Requirements</Text>
         <Text style={styles.paragraph}>
-Most cards use either mana or stanima when cast. If you cast a mana draining card with 0 mana,  then the cost to cast the card will return to your mana, but the card will not take effect. This is called burning a card. Cards can be burnt at any time if they are held down as opposed to being pressed{"\n"}</Text>
+Most cards use either mana or stanima when cast. If you cast a mana draining card with 0 mana, then the cost to cast the card will return to your mana, but the card will not take effect. This is called burning a card. Cards can be burnt at any time if they are held down as opposed to being pressed. This is scaled by mulitpliers from poison and multiplier{"\n"}</Text>
         </View>
 
          <View style={styles.spacing}></View>
