@@ -37,6 +37,7 @@ export default class HomeScreen extends React.Component {
   setDifficulty(){
     setDifficulty(difficulty);
   }
+
   render() {
 
     const { navigate } = this.props.navigation;
@@ -115,7 +116,14 @@ export default class HomeScreen extends React.Component {
           </View>
 
         <View style={styles.bubbleSpacing}></View>
-          
+
+        <View style={styles.menuBubble}>
+          <TouchableOpacity activeOpacity={0} onPress={() => navigate('History')}>
+          <Image style={styles.bubbleIcon} source={require('../assets/collection.png')} />
+          </TouchableOpacity>
+          </View>
+
+        <View style={styles.bubbleSpacing}></View>
         </View>
 
       </View>
