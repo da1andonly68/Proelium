@@ -34,7 +34,6 @@ const HIGHESTSTAMDRAIN = KICKDRAIN;
 const HIGHESTMANADRAIN = FIREBALLDRAIN;
 
 export var winner = "NONE";
-var screenMessage = "";
 export var reset = false;
 var difficultySetting = "Normal";
 export var currentFighter = null;

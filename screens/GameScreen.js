@@ -8,10 +8,13 @@ import {
   TouchableOpacity 
   } from 'react-native';
 import { Fighter1, Fighter2, useCard, burnCard, bot, gameOver, opponentDisabled} from '../gamecode/Run';
+import { Audio } from 'expo';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 var backgroundColorGlobal = 'white';
+export const music = new Audio.Sound();
+
 export default class GameScreen extends React.Component {
 
 playCard(cardNum){
@@ -28,12 +31,31 @@ burnCard(cardNum){
   }
   this.setState({dummy: 1});
 }
+componentDidMount(){
+  this.setLoop();
+}
+async setLoop(){
+  try{
+    await music.setIsLoopingAsync(true);
+  }catch(error){
+    console.log("Error setting the music to loop:" + error);
+  }
+}
 
+async stopMusic(){
+  try{
+    await music.unloadAsync();
+  }catch(error){
+    console.log("Errow with stopping music: " + error);
+  }
+
+}
   render() {
     
     const {navigate} = this.props.navigation;
 
     if(gameOver(Fighter1, Fighter2)){
+      this.stopMusic();
       navigate("Gameover");
     }
 

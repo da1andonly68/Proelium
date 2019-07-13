@@ -10,6 +10,8 @@ import {
   Image,
 } from 'react-native';
 import { randomNum, bot, setDifficulty, resetGame, getNextFighter, Fighter2} from '../gamecode/Run';
+import {music} from './GameScreen';
+
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -24,6 +26,7 @@ export var difficulty = "Normal";
 export default class HomeScreen extends React.Component {
   
   startGame(){
+    this.playMusic();
     this.setDifficulty();
     resetGame();
     bot();
@@ -37,6 +40,32 @@ export default class HomeScreen extends React.Component {
   setDifficulty(){
     setDifficulty(difficulty);
   }
+
+  componentDidMount(){
+      this.loadMusic();
+  }
+
+  async playMusic(){
+    try {
+      await music.playAsync();
+    } catch (error) {
+      console.log("Error playing music: " + error);
+    }
+  }
+  async loadMusic(){
+    try {
+      var num = randomNum(0, 1);
+      if(num >= 0.5){
+        await music.loadAsync(require('../assets/sounds/game-music.wav'));
+      }else{
+        await music.loadAsync(require('../assets/sounds/game-music2.wav'));
+      }
+
+    } catch (error) {
+      console.log("Error with loading music: " + error);
+    }
+  }
+
 
   render() {
 
