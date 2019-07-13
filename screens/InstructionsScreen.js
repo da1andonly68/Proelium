@@ -86,7 +86,7 @@ After selecting a difficulty, click on the image in the middle of the screen to 
 }
 const styles = StyleSheet.create({
   contentContainer: {
-    paddingVertical: 20
+    paddingVertical: 0
   },
   page: {
     flex: 1,

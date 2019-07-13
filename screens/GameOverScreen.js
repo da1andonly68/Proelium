@@ -10,36 +10,60 @@ import {
   Image,
   AsyncStorage,
 } from 'react-native';
-import Constants from 'expo-constants';
 import { winner, Fighter1, resetGame, getDifficulty } from '../gamecode/Run';
 
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 const backgroundColorGlobal= 'white';
-const pale = '#fcfbe3';
 
 export default class GameOverScreen extends React.Component{
     state = {
-      'broze': '',
-      'silver': '',
-      'gold': '',
-      'trophy': '',
-      'bronzeSkulls':'',
-      'silverSkulls':'',
-      'goldSkulls':'',
-      'trophySkulls':'',
+      medals: 0,
    }
     componentDidMount(){
-      AsyncStorage.getItem('broze').then((value) => this.setState({ 'broze': value }))
-      AsyncStorage.getItem('silver').then((value) => this.setState({ 'silver': value }))
-      AsyncStorage.getItem('gold').then((value) => this.setState({ 'gold': value }))
-      AsyncStorage.getItem('trophy').then((value) => this.setState({ 'trophy': value }))
-      AsyncStorage.getItem('brozeSkulls').then((value) => this.setState({ 'brozeSkulls': value }))
-      AsyncStorage.getItem('silverSkulls').then((value) => this.setState({ 'silverSkulls': value }))
-      AsyncStorage.getItem('goldSkulls').then((value) => this.setState({ 'goldSkulls': value }))
-      AsyncStorage.getItem('trophySkulls').then((value) => this.setState({ 'trophySkulls': value }))
+      this.getMedals();
     }
+
+    getMedals(){
+      switch(getDifficulty()){
+        case "Easy":
+          this.retreive("Bronze");
+        break;
+        case "Normal":
+          this.retreive("Silver");
+        break;
+        case "Hard":
+          this.retreive("Gold");
+        break;
+        case "Nightmare":
+          this.retreive("Trophy");
+        break;
+      }
+    }
+    retreive = async (type) => {
+      try {
+          const value = await AsyncStorage.getItem(type);
+          if(value === null){
+              this.store(type, "0");
+          }else{
+              this.state.medals = parseInt(value);
+              this.setState({dummy: 1});
+          }
+
+      }catch(err){
+          throw(err);
+      }
+      if(winner === Fighter1.name){
+        this.state.medals++;
+        this.state.medals = this.state.medals.toString();
+        try {
+          await AsyncStorage.setItem(type, this.state.medals);
+        } catch (err){
+          console.log("Regarding storage: " + err);
+        }
+      }
+  }
     
     resetGG(){
       if(getDifficulty === "Easy"){
