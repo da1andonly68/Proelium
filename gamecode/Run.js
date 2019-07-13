@@ -537,6 +537,7 @@ export function bot(){
   moves++;
   }
   if(currentFighter === Fighter2){
+    botMultiTurn = true;
     bot();
   }
 }

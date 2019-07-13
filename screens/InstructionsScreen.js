@@ -71,12 +71,10 @@ After selecting a difficulty, click on the image in the middle of the screen to 
         <View style={styles.card}>
         <Text style={styles.header}>Combo</Text>
         <Text style={styles.paragraph}>
-        The combo card allows the user to play multiple turns at once. They may be stacked and are scaled by multiplier cards.
+        The combo card allows the user to play multiple turns at once. They may be stacked and are scaled by multiplier cards. Currently there is no way
+        to know when the bot uses combos, but it does happen.
         </Text>
         </View>
-
-        <View style={styles.spacing}></View>
-        <View style={styles.spacing}></View>
 
         <View style={styles.bottom}></View>
 
@@ -86,13 +84,14 @@ After selecting a difficulty, click on the image in the middle of the screen to 
 }
 const styles = StyleSheet.create({
   contentContainer: {
-    paddingVertical: 0
+    paddingBottom: 60,
   },
   page: {
     flex: 1,
     flexDirection: 'column',
     backgroundColor: backgroundColorGlobal,
     paddingVertical: (40 / 701.8) * height,
+    paddingBottom: (40 / 701.8) * height,
     alignItems: 'center',
     paddingLeft: 15 / 423.5 * width,
   },
@@ -123,9 +122,8 @@ const styles = StyleSheet.create({
       paddingRight: 20 / 423.5 * width,
   },
   bottom:{
-    flex: 0.05,
+    flex: 0.1,
     backgroundColor: backgroundColorGlobal,
-    zIndex: 1,
   },
   top:{
     flex: 0.05,

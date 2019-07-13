@@ -5,8 +5,6 @@ import {
   StyleSheet, 
   Image, 
   Dimensions, 
-  Navigator, 
-  Button, 
   TouchableOpacity 
   } from 'react-native';
 import { Fighter1, Fighter2, useCard, burnCard, bot, gameOver, opponentDisabled} from '../gamecode/Run';
@@ -19,7 +17,9 @@ export default class GameScreen extends React.Component {
 playCard(cardNum){
   this.setState({dummy: 1});
   useCard(Fighter1, cardNum);
-  bot();
+  if(!gameOver(Fighter1, Fighter2)){
+    bot();
+  }
 }
 burnCard(cardNum){
   burnCard(Fighter1, cardNum);
@@ -32,6 +32,10 @@ burnCard(cardNum){
   render() {
     
     const {navigate} = this.props.navigation;
+
+    if(gameOver(Fighter1, Fighter2)){
+      navigate("Gameover");
+    }
 
     let img1;
     let img2;
@@ -192,68 +196,67 @@ burnCard(cardNum){
           }
     let oppDisplay;
     if(opponentDisabled === true){
-      oppDisplay = <Text style={styles.ohealthDisabled}>{Fighter2.health}</Text>
+      oppDisplay =  <View style={styles.statBox}>   
+                        <View style={styles.oppHealthBox}>
+                        <Text style={styles.ohealthDisabled}>{Fighter2.health}</Text>
+                        </View>
+                      <View style={styles.oppEnergy}>
+                        <Text style={styles.stanimaDisabled}>{Fighter2.stanima}</Text>
+                        <Text style={styles.manaDisabled}>{Fighter2.mana}</Text>
+                      </View>
+
+                    </View>
+      
     }else{
-      oppDisplay = <Text style={styles.ohealth}>{Fighter2.health}</Text>
+      oppDisplay =  <View style={styles.statBox}>   
+                      <View style={styles.oppHealthBox}>
+                        <Text style={styles.ohealth}>{Fighter2.health}</Text>
+                      </View>
+                      <View style={styles.oppEnergy}>
+                        <Text style={styles.stanima}>{Fighter2.stanima}</Text>
+                        <Text style={styles.mana}>{Fighter2.mana}</Text>
+                      </View>
+                    </View>
     }
-    let card1;
-    let card2;
-    let card3;
-    let card4;
-    let card5;
-    let playerH;
-    if(!gameOver(Fighter1, Fighter2)){
-    //If game isn't over, pressing bubbles plays their action, else player is navigated to game over screen
-      card1 =   <View style={styles.buttonHolder}>
+      let card1 =   <View style={styles.buttonHolder}>
                 <TouchableOpacity activeOpacity={0} onPress={this.playCard.bind(this, 0)} onLongPress={this.burnCard.bind(this, 0)}>
                 {img1}
                 </TouchableOpacity>
                 </View>
-      card2 =   <View style={styles.buttonHolder}>
+      let card2 =   <View style={styles.buttonHolder}>
                 <TouchableOpacity activeOpacity={0} onPress={this.playCard.bind(this, 1)} onLongPress={this.burnCard.bind(this, 1)}>
                 {img2}
                 </TouchableOpacity>
                 </View>
-      card3 =   <View style={styles.buttonHolder}>
+      let card3 =   <View style={styles.buttonHolder}>
                 <TouchableOpacity activeOpacity={0} onPress={this.playCard.bind(this, 2)} onLongPress={this.burnCard.bind(this, 2)} on>
                 {img3}
                 </TouchableOpacity>
                 </View>
-      card4 =   <View style={styles.buttonHolder}>
+      let card4 =   <View style={styles.buttonHolder}>
                 <TouchableOpacity activeOpacity={0} onPress={this.playCard.bind(this, 3)} onLongPress={this.burnCard.bind(this, 3)}>
                 {img4}
                 </TouchableOpacity>
                 </View>
-      card5 =   <View style={styles.buttonHolder}>
+      let card5 =   <View style={styles.buttonHolder}>
                 <TouchableOpacity activeOpacity={0} onPress={this.playCard.bind(this, 4)} onLongPress={this.burnCard.bind(this, 4)}>
                 {img5}
                 </TouchableOpacity>
                 </View>
+      let playerH;
         if(Fighter1.health >= 100){
           playerH = <Text style={styles.phealth2}>{Fighter1.health}</Text>
         }else{
           playerH = <Text style={styles.phealth}>{Fighter1.health}</Text>
         }   
                 
-    }else{
-      card1 =   <TouchableOpacity activeOpacity={0} onPress={navigate('Gameover')}>
-                </TouchableOpacity>
-      card2 = card1;
-      card3 = card1;
-      card4 = card1;
-      card5 = card1;
-    }
-
     
     return (
   <View style={styles.container}>
         <View style={styles.top}>        
         </View>
-    <View style={styles.statBox}>   
-      <View>
-          {oppDisplay}
-      </View>
-    </View>
+        {oppDisplay}
+
 
     <View style={styles.messageBox}>
       <Text style={styles.message}> {Fighter2.screenMessage}</Text>
@@ -298,9 +301,10 @@ export const styles = StyleSheet.create({
     backgroundColor: backgroundColorGlobal,
   },
   statBox:{
-    flex: 0.00045 * height,
-    justifyContent: 'center',
+    flex: 0.00040 * height,
     alignItems: 'center',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
   },
   messageBox:{
     flex: 0.08,
@@ -318,7 +322,6 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 150 / 701.8 * height,
     fontWeight: 'bold',
-    justifyContent: 'center',
   },
   ohealthDisabled:{
     fontFamily: 'Verdana',
@@ -326,7 +329,6 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 150 / 701.8 * height,
     fontWeight: 'bold',
-    justifyContent: 'center',
   },
   phealth:{
     fontFamily: 'Verdana',
@@ -353,6 +355,20 @@ export const styles = StyleSheet.create({
   },
   mana: {
     color: 'blue',
+    fontSize: 0.07 * width,
+    fontWeight: 'bold',
+    textAlign: 'center',
+     fontFamily: 'Verdana',
+  },
+  stanimaDisabled:{
+    color: '#2F4F4F',
+    fontSize: 0.07 * width,
+    fontWeight: 'bold',
+    textAlign: 'center',
+     fontFamily: 'Verdana',
+  },
+  manaDisabled: {
+    color: '#2F4F4F',
     fontSize: 0.07 * width,
     fontWeight: 'bold',
     textAlign: 'center',
@@ -410,6 +426,17 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingLeft: 10,
     paddingRight: 10,
+    alignItems:'center',
+    zIndex: 1,
+  },
+  oppHealthBox:{
+    flex: 0.4
+  },
+  oppEnergy:{
+    flexDirection: 'row',
+    flex: 0.10,
+    justifyContent: 'space-between',
+    width: (80 / 423.5) * width,
     alignItems:'center',
     zIndex: 1,
   },
