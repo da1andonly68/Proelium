@@ -222,10 +222,6 @@ async stopMusic(){
                         <View style={styles.oppHealthBox}>
                         <Text style={styles.ohealthDisabled}>{Fighter2.health}</Text>
                         </View>
-                      <View style={styles.oppEnergy}>
-                        <Text style={styles.stanimaDisabled}>{Fighter2.stanima}</Text>
-                        <Text style={styles.manaDisabled}>{Fighter2.mana}</Text>
-                      </View>
 
                     </View>
       
@@ -233,10 +229,6 @@ async stopMusic(){
       oppDisplay =  <View style={styles.statBox}>   
                       <View style={styles.oppHealthBox}>
                         <Text style={styles.ohealth}>{Fighter2.health}</Text>
-                      </View>
-                      <View style={styles.oppEnergy}>
-                        <Text style={styles.stanima}>{Fighter2.stanima}</Text>
-                        <Text style={styles.mana}>{Fighter2.mana}</Text>
                       </View>
                     </View>
     }
@@ -382,20 +374,6 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
      fontFamily: 'Verdana',
   },
-  stanimaDisabled:{
-    color: '#2F4F4F',
-    fontSize: 0.07 * width,
-    fontWeight: 'bold',
-    textAlign: 'center',
-     fontFamily: 'Verdana',
-  },
-  manaDisabled: {
-    color: '#2F4F4F',
-    fontSize: 0.07 * width,
-    fontWeight: 'bold',
-    textAlign: 'center',
-     fontFamily: 'Verdana',
-  },
   handBox1:{
     flex: 0.23,
     alignItems: 'center',
@@ -453,14 +431,6 @@ export const styles = StyleSheet.create({
   },
   oppHealthBox:{
     flex: 0.4
-  },
-  oppEnergy:{
-    flexDirection: 'row',
-    flex: 0.10,
-    justifyContent: 'space-between',
-    width: (80 / 423.5) * width,
-    alignItems:'center',
-    zIndex: 1,
   },
   bottom:{
     flex: 0.05,
