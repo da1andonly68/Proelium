@@ -180,8 +180,8 @@ const styles = StyleSheet.create({
   },
   menuBox:{
     flex: 0.2,
-    paddingLeft: (75 / 423.5) * width,
-    paddingRight: (75 / 423.5) * width,
+    paddingLeft: (70 / 423.5) * width,
+    paddingRight: (45 / 423.5) * width,
     justifyContent: 'center',
     backgroundColor: backgroundColorGlobal,
     flexDirection: 'row',
