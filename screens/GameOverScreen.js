@@ -8,13 +8,10 @@ import {
   AsyncStorage,
 } from 'react-native';
 import { winner, Fighter1, resetGame, getDifficulty, randomNum } from '../gamecode/Run';
-import { Audio } from 'expo';
-import { music } from './GameScreen';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 const backgroundColorGlobal= 'white';
-const sound = new Audio.Sound();
 
 export default class GameOverScreen extends React.Component{
     state = {
@@ -23,27 +20,6 @@ export default class GameOverScreen extends React.Component{
     componentDidMount(){
       if(winner === Fighter1.name){
         this.updateMedals();
-        this.loadSound(true, this.playSound);
-      }else{
-        this.loadSound(false, this.playSound);
-      }
-    }
-
-    componentWillUnmount(){
-      this.unloadSound();
-      this.loadMusic();
-    }
-
-    async loadMusic(){
-      try {
-        var num = randomNum(0, 1);
-        if(num >= 0.5){
-          await music.loadAsync(require('../assets/sounds/game-music.wav'));
-        }else{
-          await music.loadAsync(require('../assets/sounds/game-music2.wav'));
-        }
-      } catch (error) {
-        console.log("Error with loading music: " + error);
       }
     }
 
@@ -83,41 +59,6 @@ export default class GameOverScreen extends React.Component{
         } catch (err){
           console.log("Regarding storage: " + err);
         }
-  }
-
-  async loadSound(win, callback){
-    if(win){
-      try {
-        await sound.loadAsync(require('../assets/sounds/victory.wav'));
-      } catch (error) {
-        callback();
-        throw(error);
-      }
-    }else{
-      try {
-        await sound.loadAsync(require('../assets/sounds/loss.wav'));
-      } catch (error) {
-        callback();
-        throw(error)
-      }
-    }
-    callback();
-  }
-
-  async playSound(){
-    try{
-      await sound.playAsync();
-    }catch(error){
-      console.log("Error playing game over sound: " + error);
-    } 
-  }
-
-  async unloadSound(){
-    try{
-      await sound.unloadAsync();
-    }catch(error){
-      console.log("Error with unloading: " + error);
-    }
   }
     
     resetGG(){

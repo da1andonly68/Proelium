@@ -17,19 +17,19 @@ const FIREBALLDRAIN = 15;
 const HEALTHBOOST = -20;
 const HEALDRAIN = 10;
 const MULTIPLIERSCALER = 2;
-const POISONSCALER = 0.5;
-const FREEZEDAMAGE = 15;
-const FREEZEDRAIN = 20;
+// const POISONSCALER = 0.5;
+// const FREEZEDAMAGE = 15;
+// const FREEZEDRAIN = 20;
 const RESTBOOST = 15;
 const LEECHTRANSFER = 10;
 const LEECHDRAIN = 5;
-const POISONDAMAGE = 5;
-const POISONDRAIN = 3;
+// const POISONDAMAGE = 5;
+// const POISONDRAIN = 3;
 const SHOCKDAMAGE = 6;
 const SHOCKDRAIN = 7;
 const SHOCKSTUN = 1;
-const MAGNETIZEDAMAGE = 20;
-const MAGNETIZEDRAIN = 15;
+// const MAGNETIZEDAMAGE = 20;
+// const MAGNETIZEDRAIN = 15;
 const HIGHESTSTAMDRAIN = KICKDRAIN;
 const HIGHESTMANADRAIN = FIREBALLDRAIN;
 
@@ -72,18 +72,18 @@ function GameConstants(){
   this.healthBoost = HEALTHBOOST;
   this.healDrain = HEALDRAIN;
   this.multiplierScaler = MULTIPLIERSCALER;
-  this.poisonScaler = POISONSCALER;
-  this.poisonDamage = POISONDAMAGE;
-  this.poisonDrain = POISONDRAIN;
-  this.freezeDamage = FREEZEDAMAGE;
-  this.freezeDrain = FREEZEDRAIN;
+  // this.poisonScaler = POISONSCALER;
+  // this.poisonDamage = POISONDAMAGE;
+  // this.poisonDrain = POISONDRAIN;
+  // this.freezeDamage = FREEZEDAMAGE;
+  // this.freezeDrain = FREEZEDRAIN;
   this.restBoost = RESTBOOST;
   this.leechTransfer = LEECHTRANSFER;
   this.leechDrain = LEECHDRAIN;
   this.shockDamage = SHOCKDAMAGE;
   this.shockDrain = SHOCKDRAIN;
-  this.magnetDamage = MAGNETIZEDAMAGE;
-  this.magnetDrain = MAGNETIZEDRAIN;
+  // this.magnetDamage = MAGNETIZEDAMAGE;
+  // this.magnetDrain = MAGNETIZEDRAIN;
 }
 
 function generateCards(Fighter, num){
@@ -108,12 +108,12 @@ function manaUse(Fighter, drain){
 function staminaUse(Fighter, drain){
     Fighter.stanima = Math.round(Fighter.stanima - drain);
 }
-
+//Poison: formerly 14 Freeze: 15 Magnetize last
 var cardNames = [
-    "Punch", "Punch","Punch", "Punch", "Punch", "Kick", "Kick", "Kick", "Kick", "Fireball", "Heal", "Rest", "Multiplier", "Poison", "Freeze", "Leech", "Combo", "Shock", "Magnetize"
+    "Punch", "Punch","Punch", "Punch", "Punch", "Kick", "Kick", "Kick", "Kick", "Fireball", "Heal", /*Poison, Freeze,*/ "Rest", "Multiplier", "Leech", "Combo", "Shock" /*, "Magnetize" */
 ]
 var cardChars = [
-    "P", "P","P", "P", "P", "K", "K", "K", "K", "F", "H", "R", "M", "Po", "Fr", "L", "C", "S", "Ma"
+    "P", "P","P", "P", "P", "K", "K", "K", "K", "F", "H", "R", "M", "L", "C", "S"
 ]
 
 //PUT COMBO BACK IN
@@ -230,23 +230,23 @@ export function useCard(Fighter, placeInDeck){
       }
     }
 
-    function poison(){
-      if(enough(mana, POISONDRAIN)){
-        damage(opp, POISONDAMAGE * scal);
-        manaUse(caster, POISONDRAIN);
-        opp.scalar = POISONSCALER * scal * opp.scalar;
-        opp.emult = true;
-      }else{
-        if(mana > 0){
-            damage(opp, POISONDAMAGE * scal * partial(mana, POISONDRAIN))
-            manaUse(caster, POISONDRAIN * partial(mana, POISONDRAIN));
-            opp.scalar = POISONSCALER * scal * opp.scalar * partial(mana, POISONDRAIN);
-            opp.emult = true;
-        }else{
-          manaUse(caster, -POISONDRAIN * scal);
-        }
-      }
-    }
+    // function poison(){
+    //   if(enough(mana, POISONDRAIN)){
+    //     damage(opp, POISONDAMAGE * scal);
+    //     manaUse(caster, POISONDRAIN);
+    //     opp.scalar = POISONSCALER * scal * opp.scalar;
+    //     opp.emult = true;
+    //   }else{
+    //     if(mana > 0){
+    //         damage(opp, POISONDAMAGE * scal * partial(mana, POISONDRAIN))
+    //         manaUse(caster, POISONDRAIN * partial(mana, POISONDRAIN));
+    //         opp.scalar = POISONSCALER * scal * opp.scalar * partial(mana, POISONDRAIN);
+    //         opp.emult = true;
+    //     }else{
+    //       manaUse(caster, -POISONDRAIN * scal);
+    //     }
+    //   }
+    // }
     function shock(){
       if(enough(mana, SHOCKDRAIN)){
         damage(opp, SHOCKDAMAGE * scal);
@@ -262,27 +262,27 @@ export function useCard(Fighter, placeInDeck){
         manaUse(caster, SHOCKDRAIN * partial(mana, SHOCKDRAIN));
       }
     }
-    function magnetize(){
-      if(enough(mana, MAGNETIZEDRAIN)){
-        if(opp.mana >= MAGNETIZEDAMAGE * scal){
-          manaUse(opp, MAGNETIZEDAMAGE * scal);
-        }else{
-          manaUse(opp, opp.mana);
-        }
-         manaUse(caster, MAGNETIZEDRAIN);
-      }else{
-        if(mana > 0){
-        if(opp.stanima >= MAGNETIZEDAMAGE * scal * partial(mana, MAGNETIZEDRAIN) ){
-          manaUse(opp, MAGNETIZEDAMAGE * scal * partial(mana, MAGNETIZEDRAIN));
-          manaUse(caster, MAGNETIZEDRAIN * scal * partial(mana, MAGNETIZEDRAIN));
-        }else{
-          manaUse(opp, opp.mana);
-        }
-        }else{
-          manaUse(caster, -MAGNETIZEDRAIN * scal);
-        }
-      }     
-    }
+    // function magnetize(){
+    //   if(enough(mana, MAGNETIZEDRAIN)){
+    //     if(opp.mana >= MAGNETIZEDAMAGE * scal){
+    //       manaUse(opp, MAGNETIZEDAMAGE * scal);
+    //     }else{
+    //       manaUse(opp, opp.mana);
+    //     }
+    //      manaUse(caster, MAGNETIZEDRAIN);
+    //   }else{
+    //     if(mana > 0){
+    //     if(opp.stanima >= MAGNETIZEDAMAGE * scal * partial(mana, MAGNETIZEDRAIN) ){
+    //       manaUse(opp, MAGNETIZEDAMAGE * scal * partial(mana, MAGNETIZEDRAIN));
+    //       manaUse(caster, MAGNETIZEDRAIN * scal * partial(mana, MAGNETIZEDRAIN));
+    //     }else{
+    //       manaUse(opp, opp.mana);
+    //     }
+    //     }else{
+    //       manaUse(caster, -MAGNETIZEDRAIN * scal);
+    //     }
+    //   }     
+    // }
     switch(using){
         case 0: //Punch
         punch();
@@ -325,16 +325,16 @@ export function useCard(Fighter, placeInDeck){
         caster.scalar = MULTIPLIERSCALER * scal;
         caster.mult = true;
         break;
-        case 13: //Poison
-        poison();
-        break;
-        case 14:
-        freeze();
-        break;
-        case 15:
+        // case 13: //Poison
+        // poison();
+        // break;
+        // case 14:
+        // freeze();
+        // break;
+        case 13: //was 15
         leech();
         break;
-        case 16:
+        case 14: //was 16
         Fighter.extraMoves = (2 * scal) + Fighter.extraMoves;
         Fighter.endOfTurn = moves + 1 + (2 * scal) + Fighter.extraMoves;
         if(currentFighter === Fighter1){
@@ -345,15 +345,15 @@ export function useCard(Fighter, placeInDeck){
         }
         opponentDisabled = true;
         break;
-        case 17:
+        case 15: //was 17
         shock();
         if(currentFighter === Fighter2){
           botMultiTurn = true;
         }
         break;
-        case 18:
-        magnetize();
-        break;
+        // case 18:
+        // magnetize();
+        // break;
     }
     Fighter.lastCard = Fighter.cards[placeInDeck];
     Fighter.curCard = Fighter.namesCards[placeInDeck];
@@ -398,21 +398,21 @@ export function burnCard(Fighter, placeInDeck){
     function heal(){
         manaUse(caster, -HEALDRAIN * scal);
     }
-    function freeze(){
-        manaUse(caster, -FREEZEDRAIN * scal);
-    }
+    // function freeze(){
+    //     manaUse(caster, -FREEZEDRAIN * scal);
+    // }
     function leech(){
       manaUse(caster, -LEECHDRAIN * scal);
     }
-    function poison(){
-      manaUse(caster, -POISONDRAIN * scal);
-    }
+    // function poison(){
+    //   manaUse(caster, -POISONDRAIN * scal);
+    // }
     function shock(){
       manaUse(caster, -SHOCKDRAIN * scal);
     }
-    function magnetize(){
-      manaUse(caster, -MAGNETIZEDRAIN * scal);
-    }
+    // function magnetize(){
+    //   manaUse(caster, -MAGNETIZEDRAIN * scal);
+    // }
     switch(using){
        case 0: //Punch
         punch();
@@ -455,16 +455,16 @@ export function burnCard(Fighter, placeInDeck){
         caster.scalar = MULTIPLIERSCALER * scal;
         caster.mult = true;
         break;
-        case 13: //Poison
-        poison();
-        break;
-        case 14:
-        freeze();
-        break;
-        case 15:
+        // case 13: //Poison
+        // poison();
+        // break;
+        // case 14:
+        // freeze();
+        // break;
+        case 13: //was 15
         leech();
         break;
-        case 16:
+        case 14: //was 16
         Fighter.extraMoves = (2 * scal) + Fighter.extraMoves;
         Fighter.endOfTurn = moves + 1 + (2 * scal) + Fighter.extraMoves;
         if(currentFighter === Fighter1){
@@ -472,12 +472,12 @@ export function burnCard(Fighter, placeInDeck){
         }
         opponentDisabled = true;
         break;
-        case 17:
+        case 15: //was 17
         shock();
         break;
-        case 18:
-        magnetize();
-        break;
+        // case 18:
+        // magnetize();
+        // break;
     }
     Fighter.lastCard = Fighter.cards[placeInDeck];
     Fighter.curCard = Fighter.namesCards[placeInDeck];
@@ -566,13 +566,13 @@ function smartBot(){
         }
       }
     
-      //If opponent casts multiplier, counter with poison
-      for(i = 0; i < Fighter2.DECKSIZE; i++){
-        if((bot.opp.lastCard === "M") && (bot.cards[i] === "Po")){
-          useCard(Fighter2, i);
-          cardUsed = true;
-        }
-      }
+      // //If opponent casts multiplier, counter with poison
+      // for(i = 0; i < Fighter2.DECKSIZE; i++){
+      //   if((bot.opp.lastCard === "M") && (bot.cards[i] === "Po")){
+      //     useCard(Fighter2, i);
+      //     cardUsed = true;
+      //   }
+      // }
 
       //If health is getting low, use heal
       for(i = 0; i < Fighter2.DECKSIZE; i++){
@@ -612,20 +612,20 @@ function smartBot(){
           cardUsed = true;
         }
       }
-      //if mana affords and is available, cast magnetize
-      for(i = 0; i < Fighter2.DECKSIZE; i++){
-        if((mana >= MAGNETIZEDRAIN) && (bot.cards[i] === "Ma")){
-          useCard(Fighter2, i);
-          cardUsed = true;
-        }
-      }
-      //if mana affords and is avaiable, cast freeze
-      for(i = 0; i < Fighter2.DECKSIZE; i++){
-        if((mana >= FREEZEDRAIN) && (bot.cards[i] === "Fr")){
-          useCard(Fighter2, i);
-          cardUsed = true;
-        }
-      }
+      // //if mana affords and is available, cast magnetize
+      // for(i = 0; i < Fighter2.DECKSIZE; i++){
+      //   if((mana >= MAGNETIZEDRAIN) && (bot.cards[i] === "Ma")){
+      //     useCard(Fighter2, i);
+      //     cardUsed = true;
+      //   }
+      // }
+      // //if mana affords and is avaiable, cast freeze
+      // for(i = 0; i < Fighter2.DECKSIZE; i++){
+      //   if((mana >= FREEZEDRAIN) && (bot.cards[i] === "Fr")){
+      //     useCard(Fighter2, i);
+      //     cardUsed = true;
+      //   }
+      // }
 
       //if mana affords and is avaiable, cast fireball
       for(i = 0; i < Fighter2.DECKSIZE; i++){

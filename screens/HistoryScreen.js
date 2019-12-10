@@ -174,14 +174,15 @@ export default class HistoryScreen extends React.Component{
 }
 const styles = StyleSheet.create({
     contentContainer: {
-        paddingVertical: 0
+        paddingVertical: 0,
+        alignItems: 'center'
     },
     page: {
       flex: 1,
       flexDirection: 'column',
       backgroundColor: backgroundColorGlobal,
       paddingVertical: (40 / 701.8) * height,
-      alignItems: 'center',
+      // alignItems: 'center',
     },
     header:{
       textAlign: 'center',
@@ -194,10 +195,11 @@ const styles = StyleSheet.create({
       backgroundColor: infoBoxColor,
       flexDirection: 'row',
       justifyContent: 'space-between',
-      alignItems: 'center',
+      // alignItems: 'center',
       paddingLeft: imagePadding,
     },
     imgBox:{
+      paddingVertical: 10 / 701.8 * height,
       width: (boxHeight - imagePadding * 2)  / 423.5 * width,
       height: (boxHeight - imagePadding * 2)  / 701.8 * height,
       backgroundColor: infoBoxColor,

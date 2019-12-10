@@ -8,12 +8,10 @@ import {
   TouchableOpacity 
   } from 'react-native';
 import { Fighter1, Fighter2, useCard, burnCard, bot, gameOver, opponentDisabled} from '../gamecode/Run';
-import { Audio } from 'expo';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 var backgroundColorGlobal = 'white';
-export const music = new Audio.Sound();
 
 export default class GameScreen extends React.Component {
 
@@ -31,31 +29,12 @@ burnCard(cardNum){
   }
   this.setState({dummy: 1});
 }
-componentDidMount(){
-  this.setLoop();
-}
-async setLoop(){
-  try{
-    await music.setIsLoopingAsync(true);
-  }catch(error){
-    console.log("Error setting the music to loop:" + error);
-  }
-}
 
-async stopMusic(){
-  try{
-    await music.unloadAsync();
-  }catch(error){
-    console.log("Errow with stopping music: " + error);
-  }
-
-}
   render() {
     
     const {navigate} = this.props.navigation;
 
     if(gameOver(Fighter1, Fighter2)){
-      this.stopMusic();
       navigate("Gameover");
     }
 
@@ -83,19 +62,23 @@ async stopMusic(){
            img1 = <Image style={styles.logo} source={require('../assets/rest.png')} />
           }else if(p0 === 12){
            img1 = <Image style={styles.logo} source={require('../assets/multiplier.png')} />
-          }else if(p0 === 13){
-           img1 = <Image style={styles.logo} source={require('../assets/poison.png')} />
-          }else if(p0 === 14){
-           img1 = <Image style={styles.logo} source={require('../assets/freeze.png')} />
-          }else if(p0 === 15){
+          }
+          // else if(p0 === 13){
+          //  img1 = <Image style={styles.logo} source={require('../assets/poison.png')} />
+          // }else if(p0 === 14){
+          //  img1 = <Image style={styles.logo} source={require('../assets/freeze.png')} />
+          // }
+          else if(p0 === 13){ //was 15
            img1 = <Image style={styles.logo} source={require('../assets/bat.png')} />
-          }else if(p0 === 16){
+          }else if(p0 === 14){ //was 16
             img1 = <Image style={styles.logo} source={require('../assets/combo.png')} />
-          }else if(p0 === 17){
+          }else if(p0 === 15){ //was 17
             img1 = <Image style={styles.logo} source={require('../assets/shock.png')} />
-          }else if(p0 === 18){
-            img1 = <Image style={styles.logo} source={require('../assets/magnet.png')} />
-          }else{
+          }
+          // else if(p0 === 18){
+          //   img1 = <Image style={styles.logo} source={require('../assets/magnet.png')} />
+          // }
+          else{
           img1 = <Text activeOpacity={0} style={styles.buttonText}>
                  {Fighter1.cards[0]}
                 </Text>
@@ -112,19 +95,23 @@ async stopMusic(){
            img2 = <Image style={styles.logo} source={require('../assets/rest.png')} />
           }else if(p1 === 12){
            img2 = <Image style={styles.logo} source={require('../assets/multiplier.png')} />
-          }else if(p1 === 13){
-           img2 = <Image style={styles.logo} source={require('../assets/poison.png')} />
-          }else if(p1 === 14){
-           img2 = <Image style={styles.logo} source={require('../assets/freeze.png')} />
-          }else if(p1 === 15){
+          }
+          // else if(p1 === 13){
+          //  img2 = <Image style={styles.logo} source={require('../assets/poison.png')} />
+          // }else if(p1 === 14){
+          //  img2 = <Image style={styles.logo} source={require('../assets/freeze.png')} />
+          // }
+          else if(p1 === 13){ //was 15
            img2 = <Image style={styles.logo} source={require('../assets/bat.png')} />
-          }else if(p1 === 16){
+          }else if(p1 === 14){ //was 16
             img2 = <Image style={styles.logo} source={require('../assets/combo.png')} />
-          }else if(p1 === 17){
+          }else if(p1 === 15){ //was 17
             img2 = <Image style={styles.logo} source={require('../assets/shock.png')} />
-          }else if(p1 === 18){
-            img2 = <Image style={styles.logo} source={require('../assets/magnet.png')} />
-          }else{
+          }
+          // else if(p1 === 18){
+          //   img2 = <Image style={styles.logo} source={require('../assets/magnet.png')} />
+          // }
+          else{
           img2 = <Text activeOpacity={0} style={styles.buttonText}>
                  {Fighter1.cards[1]}
                 </Text>
@@ -141,19 +128,23 @@ async stopMusic(){
            img3 = <Image style={styles.logo} source={require('../assets/rest.png')} />
           }else if(p2 === 12){
            img3 = <Image style={styles.logo} source={require('../assets/multiplier.png')} />
-          }else if(p2 === 13){
-           img3 = <Image style={styles.logo} source={require('../assets/poison.png')} />
-          }else if(p2 === 14){
-           img3 = <Image style={styles.logo} source={require('../assets/freeze.png')} />
-          }else if(p2 === 15){
+          }
+          // else if(p2 === 13){
+          //  img3 = <Image style={styles.logo} source={require('../assets/poison.png')} />
+          // }else if(p2 === 14){
+          //  img3 = <Image style={styles.logo} source={require('../assets/freeze.png')} />
+          // }
+          else if(p2 === 13){ //was 15
            img3 = <Image style={styles.logo} source={require('../assets/bat.png')} />
-          }else if(p2 === 16){
+          }else if(p2 === 14){ //was 16
             img3 = <Image style={styles.logo} source={require('../assets/combo.png')} />
-          }else if(p2 === 17){
+          }else if(p2 === 15){ //was 17
             img3 = <Image style={styles.logo} source={require('../assets/shock.png')} />
-          }else if(p2 === 18){
-            img3 = <Image style={styles.logo} source={require('../assets/magnet.png')} />
-          }else{
+          }
+          // else if(p2 === 18){
+          //   img3 = <Image style={styles.logo} source={require('../assets/magnet.png')} />
+          // }
+          else{
           img3 = <Text activeOpacity={0} style={styles.buttonText}>
                  {Fighter1.cards[2]}
                 </Text>
@@ -170,19 +161,23 @@ async stopMusic(){
            img4 = <Image style={styles.logo} source={require('../assets/rest.png')} />
           }else if(p3 === 12){
            img4 = <Image style={styles.logo} source={require('../assets/multiplier.png')} />
-          }else if(p3 === 13){
-           img4 = <Image style={styles.logo} source={require('../assets/poison.png')} />
-          }else if(p3 === 14){
-           img4 = <Image style={styles.logo} source={require('../assets/freeze.png')} />
-          }else if(p3 === 15){
+          }
+          // else if(p3 === 13){
+          //  img4 = <Image style={styles.logo} source={require('../assets/poison.png')} />
+          // }else if(p3 === 14){
+          //  img4 = <Image style={styles.logo} source={require('../assets/freeze.png')} />
+          // }
+          else if(p3 === 13){//was 15
            img4 = <Image style={styles.logo} source={require('../assets/bat.png')} />
-          }else if(p3 === 16){
+          }else if(p3 === 14){//was 16
             img4 = <Image style={styles.logo} source={require('../assets/combo.png')} />
-          }else if(p3 === 17){
+          }else if(p3 === 15){//was 17
             img4 = <Image style={styles.logo} source={require('../assets/shock.png')} />
-          }else if(p3 === 18){
-            img4 = <Image style={styles.logo} source={require('../assets/magnet.png')} />
-          }else{
+          }
+          // else if(p3 === 18){
+          //   img4 = <Image style={styles.logo} source={require('../assets/magnet.png')} />
+          // }
+          else{
           img4 = <Text activeOpacity={0} style={styles.buttonText}>
                  {Fighter1.cards[3]}
                 </Text>
@@ -199,19 +194,23 @@ async stopMusic(){
            img5 = <Image style={styles.logo} source={require('../assets/rest.png')} />
           }else if(p4 === 12){
            img5 = <Image style={styles.logo} source={require('../assets/multiplier.png')} />
-          }else if(p4 === 13){
-           img5 = <Image style={styles.logo} source={require('../assets/poison.png')} />
-          }else if(p4 === 14){
-           img5 = <Image style={styles.logo} source={require('../assets/freeze.png')} />
-          }else if(p4 === 15){
+          }
+          // else if(p4 === 13){
+          //  img5 = <Image style={styles.logo} source={require('../assets/poison.png')} />
+          // }else if(p4 === 14){
+          //  img5 = <Image style={styles.logo} source={require('../assets/freeze.png')} />
+          // }
+          else if(p4 === 13){//was 15
            img5 = <Image style={styles.logo} source={require('../assets/bat.png')} />
-          }else if(p4 === 16){
+          }else if(p4 === 14){//was 16
             img5 = <Image style={styles.logo} source={require('../assets/combo.png')} />
-          }else if(p4 === 17){
+          }else if(p4 === 15){//was 17
             img5 = <Image style={styles.logo} source={require('../assets/shock.png')} />
-          }else if(p4 === 18){
-            img5 = <Image style={styles.logo} source={require('../assets/magnet.png')} />
-          }else{
+          }
+          // else if(p4 === 18){
+          //   img5 = <Image style={styles.logo} source={require('../assets/magnet.png')} />
+          // }
+          else{
           img5 = <Text activeOpacity={0} style={styles.buttonText}>
                  {Fighter1.cards[4]}
                 </Text>
@@ -306,7 +305,6 @@ async stopMusic(){
   </View>
     );
   }
-  
 }
 
 export const styles = StyleSheet.create({
@@ -326,37 +324,32 @@ export const styles = StyleSheet.create({
     padding: 2,
   },
   message:{
-    fontFamily: 'Verdana',
    fontSize: 24 / 701.8 * height,
     textAlign: 'center',
   },
   ohealth:{
-    fontFamily: 'Verdana',
     color: 'red',
     textAlign: 'center',
     fontSize: 150 / 701.8 * height,
     fontWeight: 'bold',
   },
   ohealthDisabled:{
-    fontFamily: 'Verdana',
     color: '#2F4F4F',
     textAlign: 'center',
     fontSize: 150 / 701.8 * height,
     fontWeight: 'bold',
   },
   phealth:{
-    fontFamily: 'Verdana',
     color: 'red',
     textAlign: 'center',
-    fontSize: 95 / 701.8 * height,
+    fontSize: 65 / 701.8 * height,
     fontWeight: 'bold',
     zIndex: 7,
   },
     phealth2:{
-    fontFamily: 'Verdana',
     color: 'red',
     textAlign: 'center',
-    fontSize: 60 / 701.8 * height,
+    fontSize: 55 / 701.8 * height,
     fontWeight: 'bold',
     zIndex: 7,
   },
@@ -365,14 +358,12 @@ export const styles = StyleSheet.create({
     fontSize: 0.07 * width,
     fontWeight: 'bold',
     textAlign: 'center',
-     fontFamily: 'Verdana',
   },
   mana: {
     color: 'blue',
     fontSize: 0.07 * width,
     fontWeight: 'bold',
     textAlign: 'center',
-     fontFamily: 'Verdana',
   },
   handBox1:{
     flex: 0.23,
@@ -418,7 +409,6 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 48,
     color: "black",
-     fontFamily: 'Verdana',
   },
   playerEnergy:{
     flexDirection: 'row',

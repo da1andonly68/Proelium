@@ -85,6 +85,7 @@ After selecting a difficulty, click on the image in the middle of the screen to 
 const styles = StyleSheet.create({
   contentContainer: {
     paddingBottom: 60,
+    alignItems: 'center'
   },
   page: {
     flex: 1,
@@ -92,14 +93,14 @@ const styles = StyleSheet.create({
     backgroundColor: backgroundColorGlobal,
     paddingVertical: (40 / 701.8) * height,
     paddingBottom: (40 / 701.8) * height,
-    alignItems: 'center',
+    // alignItems: 'center',
     paddingLeft: 15 / 423.5 * width,
   },
   screenTitleBox:{
     height: 50 / 701.8 * height,
     width: 400 / 423.5 * width,
     backgroundColor: backgroundColorGlobal,
-    alignItems: 'center',
+    // alignItems: 'center',
   },
   screenTitle:{
       color: 'black',

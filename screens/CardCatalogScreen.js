@@ -72,7 +72,7 @@ export default class CardCatalogScreen extends React.Component{
           </View>
         <View style={styles.spacing}></View>   
 
-        <View style={styles.contentBox}>
+        {/* <View style={styles.contentBox}>
             <View style={styles.imgBox}><Image style={styles.imgBox} source={require('../assets/poison.png')} /></View>
               <View style={styles.infoBox}>
                 <View style={styles.cardNameBox}>
@@ -86,7 +86,7 @@ export default class CardCatalogScreen extends React.Component{
                 </View>
               </View>
         </View>
-          <View style={styles.spacing}></View>
+          <View style={styles.spacing}></View> */}
 
           <View style={styles.contentBox}>
             <View style={styles.imgBox}><Image style={styles.imgBox} source={require('../assets/bat.png')} /></View>
@@ -139,7 +139,7 @@ export default class CardCatalogScreen extends React.Component{
 
         <View style={styles.spacing}></View>  
 
-        <View style={styles.contentBox}>
+        {/* <View style={styles.contentBox}>
             <View style={styles.imgBox}><Image style={styles.imgBox} source={require('../assets/freeze.png')} /></View>
               <View style={styles.infoBox}>
                 <View style={styles.cardNameBox}>
@@ -154,7 +154,7 @@ export default class CardCatalogScreen extends React.Component{
               </View>
         </View>
 
-        <View style={styles.spacing}></View>        
+        <View style={styles.spacing}></View>         */}
 
         <View style={styles.contentBox}>
             <View style={styles.imgBox}><Image style={styles.imgBox} source={require('../assets/rest.png')} /></View>
@@ -223,7 +223,7 @@ export default class CardCatalogScreen extends React.Component{
         </View>
                 <View style={styles.spacing}></View>  
 
-        <View style={styles.contentBox}>
+        {/* <View style={styles.contentBox}>
             <View style={styles.imgBox}><Image style={styles.imgBox} source={require('../assets/magnet.png')} /></View>
               <View style={styles.infoBox}>
                 <View style={styles.cardNameBox}>
@@ -238,7 +238,7 @@ export default class CardCatalogScreen extends React.Component{
               </View>
         </View>
 
-        <View style={styles.spacing}></View>    
+        <View style={styles.spacing}></View>     */}
 
         <View style={styles.spacing}></View>
 
@@ -250,26 +250,26 @@ export default class CardCatalogScreen extends React.Component{
 }
 const styles = StyleSheet.create({
   contentContainer: {
-    paddingVertical: 20
+    paddingVertical: 20,
+    alignItems: 'center'
   },
   page: {
     flex: 1,
     flexDirection: 'column',
     backgroundColor: backgroundColorGlobal,
     paddingVertical: (40 / 701.8) * height,
-    alignItems: 'center',
+    // alignItems: 'center',
   },
   headerBox:{
     height: 50 / 701.8 * height,
     width: 400 / 423.5 * width,
     backgroundColor: backgroundColorGlobal,
-    alignItems: 'center',
+    // alignItems: 'center',
   },
     header:{
       color: 'black',
       fontSize: 50 / 701.8 * height,
-      fontWeight: 'bold',
-      fontStyle: 'underline',
+      fontWeight: 'bold'
   },
   bottom:{
     flex: 0.05,
@@ -286,10 +286,11 @@ const styles = StyleSheet.create({
     backgroundColor: infoBoxColor,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    // alignItems: 'center',
     paddingLeft: 10 / 423.5 * width,
   },
   imgBox:{
+    paddingVertical: 10 / 701.8 * height,
     width: 128  / 423.5 * width,
     height: 128 / 701.8 * height,
     backgroundColor: infoBoxColor,
@@ -305,7 +306,7 @@ const styles = StyleSheet.create({
   cardNameBox: {
     height: 40 / 701.8 * height,
     backgroundColor: infoBoxColor,
-    alignItems: 'center',
+    // alignItems: 'center',
     justifyContent: 'center'
   },
   cardName:{
@@ -317,7 +318,7 @@ const styles = StyleSheet.create({
   descriptionBox:{
     height: 60 / 701.8 * height,
     backgroundColor: infoBoxColor,
-    alignItems: 'center',
+    // alignItems: 'center',
     justifyContent: 'center',
     zIndex: 2,
   },
@@ -336,21 +337,24 @@ const styles = StyleSheet.create({
   drainBox:{
     height: 50 / 701.8 * height,
     backgroundColor: infoBoxColor,
-    alignItems: 'center',
+    // alignItems: 'center',
     justifyContent: 'center',
     zIndex: 1,
   },
   drain:{
+    paddingLeft: 45 / 423.5 * width,
     fontSize: 25 / 701.8 * height,
     color: 'white',
     fontWeight: 'bold',
   },
   drainMana:{
+    paddingLeft: 20 / 423.5 * width,
     fontSize: 25 / 701.8 * height,
     color: '#add8e6',
     fontWeight: 'bold',
   },
   drainStam:{
+    paddingLeft: 13 / 423.5 * width,
     fontSize: 25 / 701.8 * height,
     color:	'#98FB98',
     fontWeight: 'bold',
