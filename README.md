@@ -1,8 +1,6 @@
 ==========================<br/>
 The Story of Proelium<br/>
 ==========================<br/>
-<br/>
-
 In the closing weeks of my 8th grade year, my friends and I created a small fighting game on index cards. Years later, I tried to bring this game to my mobile phone and I suceeded in creating a viable prototype.<br/> 
 
 There was one major difference between my app and the card game: Instead of playing agaisnt another player, I had a bot opponent. The logic for this was first written in Java, then ported to Javascript. React Native was then used to allow an interface with the scripted game language. <br/>
@@ -16,5 +14,5 @@ Goals:<br/>
 [ ] Refactor menu screens<br/>
 [ ] Rewrite Game Logic in Python<br/>
 [ ] Integrate Advanced CSS or Styled Components<br/>
-[x] Create README
+[x] Create README<br/>
 [x] Move old code into legacy directory<br/>
