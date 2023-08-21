@@ -10,8 +10,9 @@ This small game has stood the test of time. I recently recovered my first smartp
 ==========================<br/>
 Goals:<br/>
 ==========================<br/>
+[ ] React Github Page <br/>
 [ ] Integrate Advanced CSS or Styled Components<br/>
-[ ] Rewrite Game Logic in Python<br/>
+[ ] Rewrite Game Logic in Typescript<br/>
 [ ] Refactor menu screens<br/>
 [ ] Basic Homescreen<br/>
 [x] https://reactpy.dev/docs/guides/creating-interfaces/index.html<br/>
