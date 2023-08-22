@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/Proelium/static/css/main.073c9b0a.css",
-    "main.js": "/Proelium/static/js/main.94c05d61.js",
+    "main.js": "/Proelium/static/js/main.7a68e0ed.js",
     "static/js/787.a4c2ae4c.chunk.js": "/Proelium/static/js/787.a4c2ae4c.chunk.js",
     "static/media/logo.svg": "/Proelium/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/Proelium/index.html",
     "main.073c9b0a.css.map": "/Proelium/static/css/main.073c9b0a.css.map",
-    "main.94c05d61.js.map": "/Proelium/static/js/main.94c05d61.js.map",
+    "main.7a68e0ed.js.map": "/Proelium/static/js/main.7a68e0ed.js.map",
     "787.a4c2ae4c.chunk.js.map": "/Proelium/static/js/787.a4c2ae4c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.94c05d61.js"
+    "static/js/main.7a68e0ed.js"
   ]
 }
