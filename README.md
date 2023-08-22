@@ -14,6 +14,7 @@ Goals:<br/>
 ==========================<br/>
 [ ] React Github Page <br/>
 => https://react.dev/learn/typescript
+=> https://blog.logrocket.com/deploying-react-apps-github-pages/ 
 [ ] Integrate into aws amplify <br/>
 [ ] Explore REST API integration <br/>
 [ ] Integrate Advanced CSS or Styled Components<br/>
