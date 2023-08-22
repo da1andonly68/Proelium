@@ -14,6 +14,7 @@ Goals:<br/>
 ==========================<br/>
 [ ] React Github Page <br/>
 [ ] Integrate into aws amplify <br/>
+[ ] Explore REST API integration <br/>
 [ ] Integrate Advanced CSS or Styled Components<br/>
 [ ] Rewrite Game Logic in Typescript<br/>
 [ ] Refactor menu screens<br/>
