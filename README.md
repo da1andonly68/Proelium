@@ -13,6 +13,7 @@ For some time I considered using python to reboot this project; though now I am 
 Goals:<br/>
 ==========================<br/>
 [ ] React Github Page <br/>
+=> https://react.dev/learn/typescript
 [ ] Integrate into aws amplify <br/>
 [ ] Explore REST API integration <br/>
 [ ] Integrate Advanced CSS or Styled Components<br/>
